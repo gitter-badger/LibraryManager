@@ -4,4 +4,6 @@
 #include <conio.h>
 void Introduction();
 int MainMenu();
+int StudentManagementMenu();
+int BookManagementMenu();
 #endif
