@@ -49,6 +49,7 @@ $ git clone https://github.com/hyperion0201/LibraryManager.git
 - Login your team foundation account
 - Connect to GitHub, then select this repository.
 - Clone it
+
 Exploring and coding yourself.
 
 ### Before pushing a commit : 
