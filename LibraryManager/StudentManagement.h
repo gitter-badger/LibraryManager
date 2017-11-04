@@ -11,7 +11,7 @@ void DayExpired();  // Expired day
 void StudentDeclaration(); // Declares the default information for student
 void StudentEditing(int number);  // Edit student with their position
 void ESSubMenu(int choice); // EditStudent SubMenu
-void SeeLocalChanges(int choice); // See student infomation which has been changed
+void SeeLocalChanges(int number); // See student infomation which has been changed
 void SeachByID(char id[25]);   // Search a student by their ID
 void SearchByName(char name[25]);   // Search a student by their name
 void StudentDeleting(int number); // Delete a student with their position

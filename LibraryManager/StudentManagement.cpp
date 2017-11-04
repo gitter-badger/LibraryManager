@@ -1,7 +1,7 @@
 #include "StudentManagement.h"
 
 // Initialising arrays include student information
-char LibraryID[Max][25], Name[Max][25], ID[Max][25], Birth[Max][25], Sex[Max][25], Email[Max][25], Address[Max][25];
+char LibraryID[Max][25], Name[Max][25], ID[Max][25], Birth[Max][25], Sex[Max][25], Email[Max][25], Address[Max][50];
 int DayCre[Max];
 int MonthCre[Max];
 int YearCre[Max];
@@ -192,7 +192,7 @@ void StudentEditing(int number) {
 			YearCre[number] = yearedit;
 			DayEx[number] = dayedit;
 			MonthEx[number] = monthedit;
-			YearEx[number] = yearedit;
+			YearEx[number] = yearedit + 3;
 		} break;
 		case 1: {
 			fflush(stdin);
@@ -217,10 +217,59 @@ void StudentEditing(int number) {
 		} break;
 		case 4: {
 			fflush(stdin);
-			char 
-		}
-		default:
+			char NewBirth[25];
+			printf("Nhap vao ngay thang nam sinh moi : ");
+			gets_s(NewBirth);
+			strcpy(Birth[number - 1], NewBirth);
+		} break;
+		case 5: {
+			fflush(stdin);
+			char NewSex[25];
+			printf("Nhap vao gioi tinh moi : ");
+			gets_s(NewSex);
+			strcpy(Sex[number - 1], NewSex);
+		} break;
+		case 6: {
+			fflush(stdin);
+			char NewEmail[25];
+			printf("Nhap email moi : ");
+			gets_s(NewEmail);
+			strcpy(Email[number - 1], NewEmail);
+		} break;
+		case 7: {
+			fflush(stdin);
+			char NewAddress[50];
+			printf("Nhap dia chi moi : ");
+			gets_s(NewAddress);
+			strcpy(Address[number-1], NewAddress);
+		} break;
+		default:printf("Chuc nang ban nhap khong hop le! Vui long kiem tra lai.");
 			break;
 		}
 	}
+	else printf("Du lieu hoc sinh khong ton tai hoac khong trung khop ! Vui long thoat ra va chon lai..");
+}
+/* Starting SeeLocalChanges function
+Input : student position
+Output: Student info */
+void SeeLocalChanges(int number) {
+	printf("============== THONG TIN DOC GIA THU %d SAU KHI CHINH SUA ===========\n", number);
+	printf("\n");
+	printf("Ma thu vien la : ");
+	puts(LibraryID[number - 1]);
+	printf("Ten cua doc gia : ");
+	puts(Name[number-1]);
+	printf("So CMND : ");
+	puts(ID[number - 1]);
+	printf("Ngay thang nam sinh : ");
+	puts(Birth[number - 1]);
+	printf("Gioi tinh : ");
+	puts(Sex[number - 1]);
+	printf("Email : ");
+	puts(Email[number - 1]);
+	printf("Dia chi : ");
+	puts(Address[number - 1]);
+	printf("Thoi gian lam the thu vien : %d/%d/%d", DayCre[number - 1], MonthCre[number - 1], YearCre[number - 1]);
+	printf("Ngay het han  : %d/%d/%d", DayEx[number - 1], MonthEx[number - 1], YearEx[number - 1]);
+
 }
