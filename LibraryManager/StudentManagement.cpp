@@ -9,14 +9,21 @@ int DayEx[Max];
 int MonthEx[Max];
 int YearEx[Max];
 int studentcounter = 0; // Initialising student number counter
+/* Starting EditStudent SubMenu
+Input : ESSubMenu	 choice
+Output: choide
+*/
+void ESSubMenu() {
+
+}
 /* Starting StudentDeclaraion
 Input : LibraryID, Name, ID, Birth, Sex, Email, Address
 Output : Initial first student informations
-*/ 
+*/
 void StudentDeclaration() {
 	while (true) {
 		if (studentcounter > Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
-		else 
+		else
 			while (studentcounter < Max)
 			{
 				printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
@@ -61,6 +68,5 @@ Output: DayEx, MonthEx, YearEx
 void DayExpired() {
 	DayEx[studentcounter] = DayCre[studentcounter];
 	MonthEx[studentcounter] = MonthCre[studentcounter];
-	YearEx[studentcounter] = YearCre[studentcounter] + 4;
-		
+	YearEx[studentcounter] = YearCre[studentcounter] + 3;
 }
