@@ -200,7 +200,7 @@ void StudentEditing(int number) {
 			int dayedit, monthedit, yearedit;
 			printf("============ Noi dung chinh sua =============\n");
 			printf("Nhap ngay muon sua : ");
-			scanf_s("%d", dayedit);
+			scanf_s("%d", &dayedit);
 			printf("Nhap thang muon sua : ");
 			scanf_s("%d", &monthedit);
 			printf("Nhap nam muon sua : ");
@@ -217,49 +217,49 @@ void StudentEditing(int number) {
 			char LibIDNew[25];
 			printf("Nhap vao ma thu vien moi : ");
 			gets_s(LibIDNew);
-			strcpy(LibraryID[number - 1], LibIDNew);
+			strcpy_s(LibraryID[number - 1], LibIDNew);
 		} break;
 		case 2: {
 			fflush(stdin);
 			char NewName[25];
 			printf("Nhap vao ten moi : ");
 			gets_s(NewName);
-			strcpy(Name[number - 1], NewName);
+			strcpy_s(Name[number - 1], NewName);
 		} break;
 		case 3: {
 			fflush(stdin);
 			char NewID[25];
 			printf("Nhap vao CMND moi : ");
 			gets_s(NewID);
-			strcpy(ID[number - 1], NewID);
+			strcpy_s(ID[number - 1], NewID);
 		} break;
 		case 4: {
 			fflush(stdin);
 			char NewBirth[25];
 			printf("Nhap vao ngay thang nam sinh moi : ");
 			gets_s(NewBirth);
-			strcpy(Birth[number - 1], NewBirth);
+			strcpy_s(Birth[number - 1], NewBirth);
 		} break;
 		case 5: {
 			fflush(stdin);
 			char NewSex[25];
 			printf("Nhap vao gioi tinh moi : ");
 			gets_s(NewSex);
-			strcpy(Sex[number - 1], NewSex);
+			strcpy_s(Sex[number - 1], NewSex);
 		} break;
 		case 6: {
 			fflush(stdin);
 			char NewEmail[25];
 			printf("Nhap email moi : ");
 			gets_s(NewEmail);
-			strcpy(Email[number - 1], NewEmail);
+			strcpy_s(Email[number - 1], NewEmail);
 		} break;
 		case 7: {
 			fflush(stdin);
 			char NewAddress[50];
 			printf("Nhap dia chi moi : ");
 			gets_s(NewAddress);
-			strcpy(Address[number-1], NewAddress);
+			strcpy_s(Address[number-1], NewAddress);
 		} break;
 		default:printf("Chuc nang ban nhap khong hop le! Vui long kiem tra lai.");
 			break;
@@ -300,13 +300,13 @@ void StudentDeleting(int number) {
 	{
 		for (int i = number - 1; i < studentcounter - 1; i++) 
 		{
-			strcpy(LibraryID[i], LibraryID[i + 1]);
-			strcpy(Name[i], Name[i + 1]);
-			strcpy(ID[i], ID[i + 1]);
-			strcpy(Birth[i], Birth[i + 1]);
-			strcpy(Sex[i], Sex[i + 1]);
-			strcpy(Email[i], Email[i + 1]);
-			strcpy(Address[i], Address[i + 1]);
+			strcpy_s(LibraryID[i], LibraryID[i + 1]);
+			strcpy_s(Name[i], Name[i + 1]);
+			strcpy_s(ID[i], ID[i + 1]);
+			strcpy_s(Birth[i], Birth[i + 1]);
+			strcpy_s(Sex[i], Sex[i + 1]);
+			strcpy_s(Email[i], Email[i + 1]);
+			strcpy_s(Address[i], Address[i + 1]);
 			//Timing library card
 			DayCre[i] = DayCre[i + 1];
 			MonthCre[i] = MonthCre[i + 1];
