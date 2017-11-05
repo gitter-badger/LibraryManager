@@ -5,7 +5,7 @@
 #     Library Manager
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
- This is my official repository for building the Library Manager project from Faculty of Information Technology, Ho Chi Minh University of Science.
+ This is my official repository for building the Library Manager project based console application from Faculty of Information Technology, Ho Chi Minh University of Science.
 
  Feel free to fork/contribute/star. Any contribution will be appriciated.
 
