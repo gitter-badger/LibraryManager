@@ -13,8 +13,26 @@ int studentcounter = 0; // Initialising student number counter
 Input : ESSubMenu	 choice
 Output: choide
 */
-void ESSubMenu() {
-
+void ESSubMenu(int number) {
+	int choice;
+	while (true)
+	{
+		printf("========== TUY CHON CHINH SUA DOC GIA =============\n");
+		printf("           1. Tiep tuc chinh sua doc gia thu %d    \n",number);
+		printf("           2. Xem thong tin da chinh sua cua doc gia thu %d \n", number);
+		printf("           3. Thoat chinh sua                       \n");
+		printf("====================================================\n");
+		printf(" Nhap vao lua chon cua ban : ");
+		scanf_s("%d", &choice);
+		switch (choice)
+		{
+		case 1: StudentEditing(number); break;
+		case 2: SeeLocalChanges(number); break;
+		case 3: break;
+		default: printf("Chuc nang ban nhap vao khong hop le ! \n");
+			break;
+		}
+	}
 }
 /* Starting StudentDeclaraion
 Input : LibraryID, Name, ID, Birth, Sex, Email, Address
@@ -272,4 +290,99 @@ void SeeLocalChanges(int number) {
 	printf("Thoi gian lam the thu vien : %d/%d/%d", DayCre[number - 1], MonthCre[number - 1], YearCre[number - 1]);
 	printf("Ngay het han  : %d/%d/%d", DayEx[number - 1], MonthEx[number - 1], YearEx[number - 1]);
 
+}
+/*Starting StudentDelete function
+Input: Student position
+Output : Deleted student, listing student available*/
+void StudentDeleting(int number) {
+	int flag = 0;
+	if (number > 0 && number <= studentcounter)
+	{
+		for (int i = number - 1; i < studentcounter - 1; i++) 
+		{
+			strcpy(LibraryID[i], LibraryID[i + 1]);
+			strcpy(Name[i], Name[i + 1]);
+			strcpy(ID[i], ID[i + 1]);
+			strcpy(Birth[i], Birth[i + 1]);
+			strcpy(Sex[i], Sex[i + 1]);
+			strcpy(Email[i], Email[i + 1]);
+			strcpy(Address[i], Address[i + 1]);
+			//Timing library card
+			DayCre[i] = DayCre[i + 1];
+			MonthCre[i] = MonthCre[i + 1];
+			YearCre[i] = YearCre[i + 1];
+			// Timing expired card
+			DayEx[i] = DayEx[i + 1];
+			MonthEx[i] = MonthEx[i + 1];
+			YearEx[i] = YearEx[i + 1];
+		}
+		studentcounter--; flag = 1;
+	}
+	if (flag == 1) {
+		printf("============ DANH SACH DOC GIA SAU KHI XOA ===============\n");
+		StudentListing();
+	}
+	else printf("Co loi khi xoa, vui long thu lai..");
+}
+/* Starting SearchByID function
+Input : Identity (ID) of student
+Output : Student info
+*/
+void SearchByID(char id[25]) {
+	int flag = 0;
+	for (int i = 0; i < studentcounter; i++) {
+		if (strcmp(id, ID[i]) == 0) {
+			printf("================ KET QUA TIM KIEM ==================\n");
+			printf("   -> Ma doc gia : ");
+			puts(LibraryID[i]);
+			printf("   -> Ten doc gia : ");
+			puts(Name[i]);
+			printf("   -> CMND doc gia : ");
+			puts(ID[i]);
+			printf("   -> Ngay thang nam sinh : ");
+			puts(Birth[i]);
+			printf("   -> Gioi tinh : ");
+			puts(Sex[i]);
+			printf("   -> Email : ");
+			puts(Email[i]);
+			printf("   -> Dia chi : ");
+			puts(Address[i]);
+			printf("   -> Thoi gian lap the thu vien : %d/%d/%d\n", DayCre[i], MonthCre[i], YearCre[i]);
+			printf("   -> Ngay het han : %d/%d/%d\n", DayEx[i], MonthEx[i], YearEx[i]);
+			printf("====================================================\n");
+			flag = 1;
+		}
+	}
+	if (flag != 1) printf("Khong tim thay ket qua !");
+}
+/*Starting SearchByName function 
+Input: Name student
+Output : Student info if it matched
+*/
+void SearchByName(char name[25]) {
+	int flag = 0;
+	for (int i = 0; i < studentcounter; i++) {
+		if (strcmp(name, Name[i]) == 0) {
+			printf("================ KET QUA TIM KIEM ==================\n");
+			printf("   -> Ma doc gia : ");
+			puts(LibraryID[i]);
+			printf("   -> Ten doc gia : ");
+			puts(Name[i]);
+			printf("   -> CMND doc gia : ");
+			puts(ID[i]);
+			printf("   -> Ngay thang nam sinh : ");
+			puts(Birth[i]);
+			printf("   -> Gioi tinh : ");
+			puts(Sex[i]);
+			printf("   -> Email : ");
+			puts(Email[i]);
+			printf("   -> Dia chi : ");
+			puts(Address[i]);
+			printf("   -> Thoi gian lap the thu vien : %d/%d/%d\n", DayCre[i], MonthCre[i], YearCre[i]);
+			printf("   -> Ngay het han : %d/%d/%d\n", DayEx[i], MonthEx[i], YearEx[i]);
+			printf("====================================================\n");
+			flag = 1;
+		}
+	}
+	if (flag != 1) printf("Co loi khi tim kiem ! Vui long thoat ra va thu lai..");
 }
