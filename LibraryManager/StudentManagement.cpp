@@ -90,7 +90,7 @@ Output: DayEx, MonthEx, YearEx
 void DayExpired() {
 	DayEx[studentcounter] = DayCre[studentcounter];
 	MonthEx[studentcounter] = MonthCre[studentcounter];
-	YearEx[studentcounter] = YearCre[studentcounter] + 3;
+	YearEx[studentcounter] = YearCre[studentcounter] + 2;
 }
 /* Starting StudentListing function
 Input : None
@@ -169,7 +169,7 @@ void StudentCreating() {
 				}
 			
 		} break;
-		default: printf("Lenh ban vua nhap vao khong hop le !");
+		default: printf("Lenh ban vua nhap vao khong hop le !"); break;
 		}
 	}
 }
@@ -210,7 +210,7 @@ void StudentEditing(int number) {
 			YearCre[number] = yearedit;
 			DayEx[number] = dayedit;
 			MonthEx[number] = monthedit;
-			YearEx[number] = yearedit + 3;
+			YearEx[number] = yearedit + 2;
 		} break;
 		case 1: {
 			fflush(stdin);

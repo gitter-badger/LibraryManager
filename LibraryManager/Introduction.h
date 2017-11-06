@@ -6,4 +6,5 @@ void Introduction();
 int MainMenu();
 int StudentManagementMenu();
 int BookManagementMenu();
+int StatisticsMenu();
 #endif

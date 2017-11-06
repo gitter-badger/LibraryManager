@@ -43,5 +43,141 @@ Input : none
 Output : book informations
 */
 void BookCreating() {
+	while (true)
+	{
+		if (bookcounter > Max) printf("Khong du bo nho de tao hay cap nhat sach !");
+		else while (bookcounter<Max)
+		{
+			printf("============ THONG TIN CUON SACH THU %d ============\n", bookcounter + 1);
+			fflush(stdin);
+			printf("    -> Nhap ma sach : ");
+			gets_s(ISBN[bookcounter]);
+			printf("    -> Nhap ten sach : ");
+			gets_s(BookName[bookcounter]);
+			printf("    -> Nhap tac gia : ");
+			gets_s(Author[bookcounter]);
+			printf("    -> Nhap ten nha san xuat : ");
+			gets_s(Producer[bookcounter]);
+			printf("    -> Nhap nam san xuat : ");
+			gets_s(YearProducing[bookcounter]);
+			printf("    -> Nhap the loai : ");
+			gets_s(Genre[bookcounter]);
+			printf("    -> Nhap gia : ");
+			gets_s(Cost[bookcounter]);
+			printf("    -> Nhap vao so luong sach : ");
+			scanf_s("%d", Amount[bookcounter]);
+			bookcounter++; break;
+		}
+	}
+}
+/* Starting BookListing function
+Input : none
+Output : listed books
+*/
+void BookListing() {
+	for (int i = 0; i < bookcounter; i++)
+	{
+		printf("============= DANH SACH CAC SACH CO TRONG THU VIEN =============\n");
+		printf(" \n");
+		printf(" ============ THONG TIN CUON SACH THU %d =======================\n", bookcounter + 1);
+		printf("   -> Ma sach : ");
+		puts(ISBN[bookcounter]);
+		printf("   -> Ten sach : ");
+		puts(BookName[bookcounter]);
+		printf("   -> Tac gia : ");
+		puts(Author[bookcounter]);
+		printf("   -> Nha xuat ban : ");
+		puts(Producer[bookcounter]);
+		printf("   -> Nam xuat ban : ");
+		puts(YearProducing[bookcounter]);
+		printf("   -> The loai : ");
+		puts(Genre[bookcounter]);
+		printf("   -> Gia thanh : ");
+		puts(Cost[bookcounter]);
+		printf("   -> So luong co san : %d", Amount[bookcounter]);
+	}
+}
+/* Starting BookEditing function
+Input : book position
+Output: listed books available
+*/
+void BookEditing(int number){
+	if (number > 0 && number < Max)
+	{
+		int choice;
+		printf("============== MENU CHINH SUA SACH ================\n");
+		printf("    1. Chinh sua ISBN\n");
+		printf("    2. Chinh sua ten sach \n");
+		printf("    3. Chinh sua tac gia \n");
+		printf("    4. Chinh sua nha xuat ban \n");
+		printf("    5. Chinh sua nam xuat ban \n");
+		printf("    6. Chinh sua the loai\n");
+		printf("    7. Chinh sua gia\n");
+		printf("    8. Chinh sua so luong\n");
+		printf("==================================================\n");
+		printf(" Nhap vao lua chon cua ban : ");
+		scanf_s("%d", &choice);
+		switch (choice)
+		{
+		case 1: {
+			fflush(stdin);
+			char NewISBN[25];
+			printf("Nhap vao ISBN moi : ");
+			gets_s(NewISBN);
+			strcpy_s(ISBN[number-1], NewISBN);
+		} break;
+		case 2: {
+			fflush(stdin);
+			char NewBookName[30];
+			printf(" Nhap vao ten moi : ");
+			gets_s(NewBookName);
+			strcpy_s(BookName[number - 1], NewBookName);
+		} break;
+		case 3: {
+			fflush(stdin);
+			char NewAuthor[25];
+			printf("Nhap vao tac gia moi : ");
+			gets_s(NewAuthor);
+			strcpy_s(Author[number - 1], NewAuthor);
+		} break;
+		case 4: {
+			fflush(stdin);
+			char NewProducer[25];
+			printf("Nhap vao nha xuat ban moi : ");
+			gets_s(NewProducer);
+			strcpy_s(Producer[number - 1], NewProducer);
+		} break;
+		case 5: {
+			fflush(stdin);
+			char NewYearProducing[25];
+			printf("Nhap vao nam san xuat moi : ");
+			gets_s(NewYearProducing);
+			strcpy_s(YearProducing[number - 1], NewYearProducing);
+		} break;
+		case 6: {
+			fflush(stdin);
+			char NewGenre[25];
+			printf(" Nhap vao the loai moi : ");
+			gets_s(NewGenre);
+			strcpy_s(Genre[number - 1], NewGenre);
+		} break;
+		case 7: {
+			fflush(stdin);
+			char NewCost[25];
+			printf("Nhap vao gia moi : ");
+			gets_s(NewCost);
+			strcpy_s(Cost[number - 1], NewCost);
+		} break;
+		default: printf(" Lua chon khong hop le ! Vui long thu lai ..");
+			break;
+		}
+	}
+	else printf("Co loi xay ra khi chinh sua! Vui long thoat ra menu chinh va thu lai..");
+}
+/* Starting EBSubMenu function
+Input : choice
+Output : 
+*/
+void EBSubMenu(int choice) {
 
 }
