@@ -1,6 +1,6 @@
 #include "BookManagement.h"
 // Initialising arrays stored book informations
-char ISBN[Max][25], BookName[Max][30], Author[Max][25], Producer[Max][30], YearProducing[Max][25],
+char ISBN[Max][30], BookName[Max][30], Author[Max][25], Producer[Max][30], YearProducing[Max][25],
 Genre[Max][25], Cost[Max][25];
 int Amount[Max];
 // Init book in library counter
@@ -20,8 +20,10 @@ void BookDeclaration() {
 		else while (bookcounter<Max)
 		{
 			printf("================ THONG TIN CUON SACH THU %d ==============\n", bookcounter + 1);
-			fflush(stdin); //clear caches
+			fflush(stdin);//clear caches
+			getchar();
 			printf("    -> ISBN cuon sach thu %d : ", bookcounter + 1);
+			
 			gets_s(ISBN[bookcounter]);
 			printf("    -> Ten cuon sach thu %d : ", bookcounter + 1);
 			gets_s(BookName[bookcounter]);
@@ -83,22 +85,22 @@ void BookListing() {
 	{
 		printf("============= DANH SACH CAC SACH CO TRONG THU VIEN =============\n");
 		printf(" \n");
-		printf(" ============ THONG TIN CUON SACH THU %d =======================\n", bookcounter + 1);
+		printf(" ============ THONG TIN CUON SACH THU %d =======================\n", i + 1);
 		printf("   -> Ma sach : ");
-		puts(ISBN[bookcounter]);
+		puts(ISBN[i]);
 		printf("   -> Ten sach : ");
-		puts(BookName[bookcounter]);
+		puts(BookName[i]);
 		printf("   -> Tac gia : ");
-		puts(Author[bookcounter]);
+		puts(Author[i]);
 		printf("   -> Nha xuat ban : ");
-		puts(Producer[bookcounter]);
+		puts(Producer[i]);
 		printf("   -> Nam xuat ban : ");
-		puts(YearProducing[bookcounter]);
+		puts(YearProducing[i]);
 		printf("   -> The loai : ");
-		puts(Genre[bookcounter]);
+		puts(Genre[i]);
 		printf("   -> Gia thanh : ");
-		puts(Cost[bookcounter]);
-		printf("   -> So luong co san : %d", Amount[bookcounter]);
+		puts(Cost[i]);
+		printf("   -> So luong co san : %d", Amount[i]);
 	}
 }
 /* Starting BookEditing function

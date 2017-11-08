@@ -40,12 +40,12 @@ Output : Initial first student informations
 */
 void StudentDeclaration() {
 	while (true) {
-		if (studentcounter > Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
+		if (studentcounter >= Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
 		else
 			while (studentcounter < Max)
 			{
 				printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
-				fflush(stdin); // Clear the caches
+			 // Clear the caches
 				// Input the informations
 				printf("  -> Ma so doc gia thu %d : ", studentcounter + 1);
 				gets_s(LibraryID[studentcounter]);
@@ -62,7 +62,7 @@ void StudentDeclaration() {
 				printf("  -> Dia chi doc gia thu %d (luu y khong dung dau cham hay dau phay) : ", studentcounter + 1);
 				gets_s(Address[studentcounter]);
 				//Library card creating
-				printf("  -> Nhap vao thoi gian lam the thu vien : ");
+				printf("  -> Nhap vao thoi gian lam the thu vien : \n");
 				DayCreating();
 				// Automatic evaluate expired time
 				DayExpired();
@@ -76,11 +76,11 @@ Input : None
 Output: Day, month, year of library card for first use
 */
 void DayCreating() {
-	printf("  -> Nhap ngay lap the : ");
+	printf("\t  -> Nhap ngay lap the : ");
 	scanf_s("%d", &DayCre[studentcounter]);
-	printf("  -> Nhap thang lap the : ");
+	printf("\t  -> Nhap thang lap the : ");
 	scanf_s("%d", &MonthCre[studentcounter]);
-	printf("  -> Nhap nam lap the : ");
+	printf("\t  -> Nhap nam lap the : ");
 	scanf_s("%d", &YearCre[studentcounter]);
 }
 /* Starting DayExpired function with automatically evaluate the expiration

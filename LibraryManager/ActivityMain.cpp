@@ -1,23 +1,53 @@
 #include "Introduction.h"
 #include "BookManagement.h"
 #include "StudentManagement.h"
+
 void main() {
 	int menuchoice, smchoice, bmchoice;
-	printf("\nDe thuc hien chuong trinh.Vui long nhap cac thong tin theo yeu cau ben duoi\n");
-
-	//Nhap thong tin cua 3 doc gia dau tien
-	printf("\n================>HAY NHAP THONG TIN CUA 1 DOC GIA DAU TIEN<================\n");
-	StudentDeclaration();
-
-	//Nhap thong tin cua 3 quyen sach dau tien
-	printf("\n===============>HAY NHAP THONG TIN CUA 1 QUYEN SACH DAU TIEN<==============\n");
-	BookDeclaration();
-
-	printf("\tLUU Y:De thuc hien cac lenh can lam.Hay nhap cac ky tu so o dau moi dong yeu cau trong cac menu lenh!!");
+	// Initialising components as waiting for avoiding interupt
+	printf("\t=============== CHAO MUNG BAN DEN VOI QUAN LI THU VIEN =================\n");
+	Sleep(5000);
+	printf("\t Chuong trinh dang chuan bi du lieu. Vui long doi trong giay lat !");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". \n");
+	printf("\t Luu y : De chuong trinh chay on dinh, \n \tban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
+	Sleep(5000);
+	printf("\t Ban da hieu roi chu. Bat dau nao \n");
+	Sleep(3000);
 	printf("\n");
+	printf("\t -> Nhap thong tin cho doc gia dau tien :\n");
+	printf("\n");
+	StudentDeclaration();
+	printf("\n");
+	printf("\t -> Nhap thong tin cho cuon sach dau tien : \n");
+	printf("\n");
+	BookDeclaration();
+	Sleep(3000);
+	printf("\t Thu vien da nhan duoc du lieu khoi dong. Chuong trinh se duoc tiep tuc");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
+	Sleep(1000);
+	printf(". ");
 	menuchoice = MainMenu();
 	switch (menuchoice)
 	{
+	case 0: Introduction();
 	case 1: {
 		system("cls");
 		smchoice = StudentManagementMenu();
