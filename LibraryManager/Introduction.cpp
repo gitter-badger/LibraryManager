@@ -39,6 +39,7 @@ int StudentManagementMenu() {
 	printf("                   4. Xoa Thong Tin Mot Doc Gia                 \n");
 	printf("                   5. Tim Kiem Doc Gia Theo CMND                \n");
 	printf("                   6. Tim Kiem Sach Theo Ho Ten                 \n");
+	printf("                   0. Quay lai menu chinh                       \n");
 	printf("               Vui Long Chon Phim Chuc Nang :  ");
 	scanf_s("%d", &choice);
 	return choice;
@@ -54,6 +55,7 @@ int BookManagementMenu() {
 	printf("                   4. Xoa Thong Tin Sach                        \n");
 	printf("                   5. Tim Kiem Sach Theo ISBN                   \n");
 	printf("                   6. Tim Kiem Sach Theo Ten Sach               \n");
+	printf("                   0. Quay lai menu chinh                       \n");
 	printf("      ==========================================================\n");
 	printf("           Vui Long Chon Phim Chuc Nang :  ");
 	scanf_s("%d", &choice);

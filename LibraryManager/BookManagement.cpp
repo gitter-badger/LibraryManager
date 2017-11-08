@@ -5,9 +5,13 @@ Genre[Max][25], Cost[Max][25];
 int Amount[Max];
 // Init book in library counter
 int bookcounter = 0;
+/* Starting GetBookInfo function
+Input: book position
+Output: Info
+*/
 /* Starting BookDeclaration for default database.
 Input: informations on arrays
-Output : informations stored for max 3 books
+Output : informations stored for max 1 books
 */
 void BookDeclaration() {
 	while (true)
@@ -35,7 +39,7 @@ void BookDeclaration() {
 			scanf_s("%d", &Amount[bookcounter]);
 			bookcounter++; break;
 		}
-		if (bookcounter >= 3) break; //Declaring max 3 books
+		if (bookcounter >= 1) break; //Declaring max 3 books
 	}
 }
 /* Starting BookCreating function
@@ -178,6 +182,132 @@ void BookEditing(int number){
 Input : choice
 Output : 
 */
-void EBSubMenu(int choice) {
-
+void EBSubMenu(int number) {
+	while (true)
+	{
+		int choice;
+		printf("=========== Menu Chinh Sua Va Cap Nhat Sach =================\n");
+		printf("\n");
+		printf("     -> 1. Tiep tuc chinh sua va cap nhat cuon sach\n");
+		printf("     -> 2. Xem thong tin cuon sach sau khi chinh sua\n");
+		printf("     -> 3. Thoat chinh sua\n");
+		printf("=============================================================\n");
+		printf("  Nhap vao lua chon cua ban : ");
+		scanf_s("%d", &choice);
+		if (choice == 3) break;
+		switch (choice)
+		{
+		case 1: BookEditing(number); break;
+		case 2: SeeBookChanges(number); break;
+		default: printf("Lenh khong ton tai, xin thu lai..");
+			break;
+		}
+	}
+}
+/* Starting SeeBookChanges function
+Input: book position
+Output: Book informations
+*/
+void SeeBookChanges(int number) {
+	printf("============ Thong Tin Cuon Sach Thu %d Sau Khi Chinh Sua ==============\n", number);
+	printf("   -> Ma sach : ");
+	puts(ISBN[number + 1]);
+	printf("   -> Ten sach : ");
+	puts(BookName[number + 1]);
+	printf("   -> Tac gia : ");
+	puts(Author[number + 1]);
+	printf("   -> Nha xuat ban : ");
+	puts(Producer[number + 1]);
+	printf("   -> Nam xuat ban : ");
+	puts(YearProducing[number + 1]);
+	printf("   -> The loai : ");
+	puts(Genre[number + 1]);
+	printf("   -> Gia thanh : ");
+	puts(Cost[number + 1]);
+	printf("   -> So luong co san : %d", Amount[number + 1]);
+}
+/* Starting BookDeleting function
+Input: book position
+Output: Listed book available
+*/
+void BookDeleting(int number) {
+	int flag = 0;
+	if (number >= 0 && number < bookcounter) {
+		for (int i = number - 1; i < bookcounter - 1; i++) {
+			strcpy_s(ISBN[number], ISBN[number + 1]);
+			strcpy_s(BookName[number], BookName[number + 1]);
+			strcpy_s(Author[number], Author[number + 1]);
+			strcpy_s(Producer[number], Producer[number + 1]);
+			strcpy_s(YearProducing[number], YearProducing[number + 1]);
+			strcpy_s(Genre[number], Genre[number + 1]);
+			strcpy_s(Cost[number], Cost[number + 1]);
+			Amount[number] = Amount[number + 1];
+		}
+		bookcounter--; flag = 1;
+	}
+	if (flag == 1) {
+		printf("============ Danh Sach Quyen Sach Trong Thu Vien Sau Khi Xoa ================\n");
+		BookListing();
+	}
+	else printf("Co loi khi xoa, vui long thu lai..");
+}
+/* Starting SearchByBookName function
+Input: Book's name
+Output : Return info if it matched
+*/
+void SearchByBookName(char name[30]) {
+	int flag = 0;
+	for (int i = 0; i < bookcounter; i++) {
+		if (strcmp(name, BookName[i]) == 0) {
+			printf("============ KET QUA TIM KIEM ===========\n");
+			printf("\n");
+			printf("    -> Ma sach : ");
+			puts(ISBN[i]);
+			printf("    -> Ten sach : ");
+			puts(BookName[i]);
+			printf("    -> Tac gia : ");
+			puts(Author[i]);
+			printf("    -> Nha xuat ban : ");
+			puts(Producer[i]);
+			printf("    -> Nam xuat ban : ");
+			puts(YearProducing[i]);
+			printf("    -> The loai : ");
+			puts(Genre[i]);
+			printf("    -> Gia(VND) : ");
+			puts(Cost[i]);
+			printf("==========================================\n");
+			flag = 1; break;
+		}	
+	}
+	if (flag != 1) printf("Khong tim thay sach hoac co loi khi tim kiem. Vui long thu lai..");
+}
+/* Starting SearchByISBN function
+Input: ISBN[25]
+Output : Return info if it matched
+*/
+void SearchByISBN(char isbn[30]) {
+	int flag = 0;
+	for (int i = 0; i < bookcounter; i++) {
+		if (strcmp(isbn, ISBN[i]) == 0) {
+			printf("============ KET QUA TIM KIEM ===========\n");
+			printf("\n");
+			printf("    -> Ma sach : ");
+			puts(ISBN[i]);
+			printf("    -> Ten sach : ");
+			puts(BookName[i]);
+			printf("    -> Tac gia : ");
+			puts(Author[i]);
+			printf("    -> Nha xuat ban : ");
+			puts(Producer[i]);
+			printf("    -> Nam xuat ban : ");
+			puts(YearProducing[i]);
+			printf("    -> The loai : ");
+			puts(Genre[i]);
+			printf("    -> Gia(VND) : ");
+			puts(Cost[i]);
+			printf("==========================================\n");
+			flag = 1; break;
+		}
+	}
+	if (flag != 1) printf("Khong tim thay ket qua hoac co loi khi tim kiem, vui long thu lai..");
 }

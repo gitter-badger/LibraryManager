@@ -24,11 +24,11 @@ void ESSubMenu(int number) {
 		printf("====================================================\n");
 		printf(" Nhap vao lua chon cua ban : ");
 		scanf_s("%d", &choice);
+		if (choice == 3) break;
 		switch (choice)
 		{
 		case 1: StudentEditing(number); break;
 		case 2: SeeLocalChanges(number); break;
-		case 3: break;
 		default: printf("Chuc nang ban nhap vao khong hop le ! \n");
 			break;
 		}
@@ -68,7 +68,7 @@ void StudentDeclaration() {
 				DayExpired();
 				studentcounter++; break;
 			}
-		if (studentcounter >= 3) break;
+		if (studentcounter >= 1) break;
 	}
 }
 /* Starting DayCreate function

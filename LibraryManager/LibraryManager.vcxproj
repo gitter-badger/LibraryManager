@@ -24,6 +24,7 @@
     <ClInclude Include="StudentManagement.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActivityMain.cpp" />
     <ClCompile Include="BookManagement.cpp" />
     <ClCompile Include="Introduction.cpp" />
     <ClCompile Include="StudentManagement.cpp" />

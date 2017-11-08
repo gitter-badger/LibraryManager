@@ -1,2 +1,6 @@
-﻿  BookManagement.cpp
-c:\users\hyperion0201\source\repos\librarymanager\librarymanager\bookmanagement.cpp(4): fatal error C1004: unexpected end-of-file found
+﻿  StudentManagement.cpp
+  BookManagement.cpp
+c:\users\hyperion0201\source\repos\librarymanager\librarymanager\bookmanagement.cpp(72): warning C4477: 'scanf_s' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'int'
+  ActivityMain.cpp
+  Generating Code...
+  LibraryManager.vcxproj -> C:\Users\hyperion0201\source\repos\LibraryManager\x64\Debug\LibraryManager.exe

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
-const int Max = 1000;
+#define Max 1000
 void StudentListing();  // See students
 void StudentCreating();  // Create a new student
 void DayCreating(); // Day creating aka valid from
