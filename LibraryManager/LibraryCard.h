@@ -5,7 +5,7 @@
 #include <string.h>
 //#include <stdlib.h>
 //#include <Windows.h>
-void CardCreating();           // Create borrowing or returning card
+void CardCreatingMenu();           // Create borrowing or returning card menu
 void BorrowingCardInput();   // Input dd-mm--yyyy of borrowing card
 void BorrowingCardListing(); // Print borrowing card informations
 void EstimatedReturnTime();  //Input or automatically calculating returning time
