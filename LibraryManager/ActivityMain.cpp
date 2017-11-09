@@ -5,49 +5,12 @@
 void main() {
 	int menuchoice, smchoice, bmchoice;
 	// Initialising components as waiting for avoiding interupt
-	printf("\t=============== CHAO MUNG BAN DEN VOI QUAN LI THU VIEN =================\n");
-	Sleep(5000);
-	printf("\t Chuong trinh dang chuan bi du lieu. Vui long doi trong giay lat !");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". \n");
-	printf("\t Luu y : De chuong trinh chay on dinh, \n \tban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
-	Sleep(5000);
-	printf("\t Ban da hieu roi chu. Bat dau nao \n");
-	Sleep(3000);
-	printf("\n");
-	printf("\t -> Nhap thong tin cho doc gia dau tien :\n");
-	printf("\n");
-	StudentDeclaration();
-	printf("\n");
-	printf("\t -> Nhap thong tin cho cuon sach dau tien : \n");
-	printf("\n");
-	BookDeclaration();
-	Sleep(3000);
-	printf("\t Thu vien da nhan duoc du lieu khoi dong. Chuong trinh se duoc tiep tuc");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
-	Sleep(1000);
-	printf(". ");
+	InitializingComponents();
+	system("cls");
 	menuchoice = MainMenu();
 	switch (menuchoice)
 	{
-	case 0: Introduction();
+	case 0: Introduction(); break;
 	case 1: {
 		system("cls");
 		smchoice = StudentManagementMenu();
@@ -92,7 +55,7 @@ void main() {
 		case 0: break;
 		default: printf("Lenh khong hop le, vui long thu lai..");
 			break;
-		}
+		} break;
 	}
 	case 2: {
 		system("cls");

@@ -10,7 +10,7 @@ int MonthEx[Max];
 int YearEx[Max];
 int studentcounter = 0; // Initialising student number counter
 /* Starting EditStudent SubMenu
-Input : ESSubMenu	 choice
+Input : ESSubMenu		 choice
 Output: choide
 */
 void ESSubMenu(int number) {
@@ -44,7 +44,7 @@ void StudentDeclaration() {
 		else
 			while (studentcounter < Max)
 			{
-				printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
+				printf(" ============ Thong Tin Doc Gia Thu %d ===================\n", studentcounter + 1);
 			 // Clear the caches
 				// Input the informations
 				printf("  -> Ma so doc gia thu %d : ", studentcounter + 1);
@@ -116,7 +116,7 @@ void StudentListing() {
 			puts(Email[i]);
 			printf("Dia chi : ");
 			puts(Address[i]);
-			printf("Thoi gian lam the thu vien : %d/%d/%d", DayCre[i], MonthCre[i], YearCre[i]);
+			printf("Thoi gian lam the thu vien : %d/%d/%d\n", DayCre[i], MonthCre[i], YearCre[i]);
 			printf("Ngay het han  : %d/%d/%d", DayEx[i], MonthEx[i], YearEx[i]);
 
 		}
@@ -144,7 +144,8 @@ void StudentCreating() {
 				while (studentcounter < Max)
 				{
 					printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
-					fflush(stdin); // Clear the caches
+					fflush(stdin);
+					getchar();// Clear the caches
 								   // Input the informations
 					printf("  -> Ma so doc gia thu %d : ", studentcounter + 1);
 					gets_s(LibraryID[studentcounter]);
@@ -161,7 +162,7 @@ void StudentCreating() {
 					printf("  -> Dia chi doc gia thu %d (luu y khong dung dau cham hay dau phay) : ", studentcounter + 1);
 					gets_s(Address[studentcounter]);
 					//Library card creating
-					printf("  -> Nhap vao thoi gian lam the thu vien : ");
+					printf("  -> Nhap vao thoi gian lam the thu vien : \n");
 					DayCreating();
 					// Automatic evaluate expired time
 					DayExpired();

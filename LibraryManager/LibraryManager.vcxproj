@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,12 +21,15 @@
   <ItemGroup>
     <ClInclude Include="BookManagement.h" />
     <ClInclude Include="Introduction.h" />
+    <ClInclude Include="LibraryCard.h" />
+    <ClInclude Include="Statistics.h" />
     <ClInclude Include="StudentManagement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActivityMain.cpp" />
     <ClCompile Include="BookManagement.cpp" />
     <ClCompile Include="Introduction.cpp" />
+    <ClCompile Include="LibraryCard.cpp" />
     <ClCompile Include="StudentManagement.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

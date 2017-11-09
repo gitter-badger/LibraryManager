@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <conio.h>
 void Introduction();
+void InitializingComponents();
 int MainMenu();
 int StudentManagementMenu();
 int BookManagementMenu();
