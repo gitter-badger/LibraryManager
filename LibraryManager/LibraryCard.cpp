@@ -1,20 +1,7 @@
+#include "LibraryComponents.h"
 #include "LibraryCard.h"
-#include "BookManagement.h"
-#include "Introduction.h"
-#include "StudentManagement.h"
-#include "BookManagement.cpp"
-#include "StudentManagement.cpp"
-#include "Introduction.cpp"
-#define Max 1000
-char BorrowingID[Max][25], BorrowingISBN[Max][25], ReturningID[Max][25];
-int	 BorrowingDay[Max], BorrowingMonth[Max], BorrowingYear[Max],
-	 estimatedDay[Max], estimatedMonth[Max], estimatedYear[Max],
-	 returningDay[Max], returningMonth[Max], returningYear[Max];
-int bookInATime[Max]; // Books amount stored books which borrowed by a student during a time
-int borrowedbook = 0; // Counting books which borrowed by students
-int borrowedcard = 0;// count borrowed card
-int returnedcard = 0; // count returned card
-int cardcounter = 0; // Variable stored card amount
+#include <stdio.h>
+#include <conio.h>
 
 /*Starting BorrowingCardInput function
 Type : void
@@ -115,14 +102,15 @@ void BorrowingCardListing() {
 	{
 		printf("              -> ISBN cuon sach thu %d : ", i+1);
 		puts(BorrowingISBN[i]);
-		printf("              -> Ten cuon sach thu %d : ", i + 1);
+	/*	printf("              -> Ten cuon sach thu %d : ", i + 1);
 		for (int j = 0; j < bookcounter; j++)
 			if (strcmp(BorrowingISBN[i], ISBN[j]) == 0) puts(BookName[j]);
+			*/
 	}
 	printf("===================== DOC GIA CAN LUU Y : ================== \n");
 	printf(" -> Chi duoc phep muon sach toi da 7 ngay.\n");
 	printf(" -> Neu tre han thi phat 5000VND/1 ngay/1 sach.\n");
-	printf(" -> Neu mat sach thi phai boi thuong 200% gia tri cuon sach do.\n");
+	printf(" -> Neu mat sach thi phai boi thuong 200 phan tram gia tri cuon sach do.\n");
 	printf(" Mong doc gia thuc hien nghiem tuc.\n");
 	printf("===================================================================\n");
 }
@@ -162,9 +150,213 @@ Output : print ReturningCard info
 void ReturningCardListing() {
 	system("cls");
 	int flag = 0;
-
-	printf("=================== THONG TIN PHIEU TRA SACH CUA DOC GIA ================\n");
-	printf("\n");
-	printf("     -> Ma so doc gia tra sach : ");
-	if (strcmp(BorrowingID[]))
+	for (int i = 0; i < borrowedcard; i++)
+	{
+		if (strcmp(BorrowingID[i], ReturningID[i]) == 0)
+		{
+			printf("================== THONG TIN PHIEU TRA SACH =================\n");
+			printf("\n");
+			printf("   -> Ma so doc gia : ");
+			puts(BorrowingID[i]);
+			printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
+			printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
+			printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
+			printf("   -> Danh sach cac sach da muon : \n");
+			for (int j = 0; j < bookInATime[i]; j++)
+			{
+				printf("     -> ISBN Cuon sach thu %d : ", j + 1);
+				puts(BorrowingISBN[j]);
+			/*	printf("     -> Ten cuon sach thu %d : ", j + 1);
+				for (int k = 0; k < bookcounter; k++)
+					if (strcmp(BorrowingISBN[j], ISBN[k]) == 0)
+						puts(BookName[k]);
+						*/
+			}
+				printf("   -> So tien phat phai tra : %d VND \n",PenaltyFee(returningDay[i], returningMonth[i], returningYear[i], estimatedDay[i], estimatedMonth[i], estimatedYear[i]));
+		}
+	}
+}
+/* Starting PenaltyFee function
+Type: int
+Input : returningDay, returningMonth, returningYear, estimatedDay, estimated Month, estimatedYear
+Output: fee for against library's rule
+*/
+int PenaltyFee(int returningDay, int returningMonth, int returningYear, int estimatedDay, int estimatedMonth, int estimatedYear)
+{
+	// Initiating variables : daysover(days over rules), fee(money for paying), distance1(between 2 returning time),
+	int daysover, fee, distance1, distance2;
+	// In-condition : estimatedYear = returningYear, estimatedMonth = returningMonth
+	if (estimatedYear == returningYear) // Same year
+	{
+		if (estimatedMonth == returningMonth)  // Same month
+		{
+			if (estimatedDay >= returningDay) return 0;
+			else
+			{
+				daysover = returningDay - estimatedDay;
+				fee = daysover * 5000;
+				return fee;
+			}
+		}
+		// In-condition: estimatedMonth != returningMonth
+		else if (estimatedMonth < returningMonth)
+		{
+			// If estimatedMonth = 2
+			if (estimatedMonth == 2)
+			{
+				// Check if leap year
+				if ((estimatedYear % 4 == 0 && estimatedYear % 100 != 0) || estimatedYear % 400 == 0)
+				{
+					// Caculating distance from	returningDay of returningMonth to estimatedDay of estimatedMonth
+					distance1 = returningDay;
+					int i = returningMonth - 1;
+					for (i; i > estimatedMonth; i--)
+					{
+						if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 = distance1 + 31;
+						else distance1 = distance1 + 30;
+					}
+					// Nam nhuan nen so ngay qua han bang distance + (29 - estimatedDay)
+					daysover = distance1 + (29 - estimatedDay);
+					fee = 5000 * daysover;
+					return fee;
+				}
+				else // Not a leap year
+				{
+					distance1 = returningDay;
+					int i = returningMonth - 1;
+					for (i; i > estimatedMonth; i--)
+					{
+						if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 += 31;
+						else distance1 += 30;
+					}
+					// Nam khong nhuan nen so ngay qua han bang distance + (28-estimatedDay)
+					daysover = distance1 + (28 - estimatedDay);
+					fee = 5000 * daysover;
+					return fee;
+				}
+			}
+			else //estimatedMonth != 2
+			{
+				// if returning month in 1,3,5,7,8,10,12 which has 31 days
+				if (estimatedMonth == 1 || estimatedMonth == 3 || estimatedMonth == 5 || estimatedMonth == 7 || estimatedMonth == 8 || estimatedMonth == 10 || estimatedMonth == 12)
+				{
+					// Check if leap year
+					if ((estimatedYear % 4 == 0 && estimatedYear % 100 != 0) || estimatedYear % 400 == 0)
+					{
+						distance1 = returningDay;
+						int i = returningMonth - 1;
+						for (i; i > estimatedMonth; i--)
+						{
+							if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 += 31;
+							else if (i == 2) distance1 += 29;
+							else distance1 += 30;
+						}
+						daysover = distance1 + (31 - estimatedDay);
+						fee = 5000 * daysover;
+						return fee;
+					}	
+					else // not a leap year
+					{
+						distance1 = returningDay;
+						int i = returningMonth - 1; // check next month
+						for (i; i > estimatedMonth; i--)
+						{
+							if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 += 31;
+							else if (i == 2) distance1 += 28;
+							else distance1 += 30;
+						}
+						daysover = distance1 + (31 - estimatedDay);
+						fee = daysover * 5000;
+						return fee;
+					}
+				}
+				else
+				{
+					if ((estimatedYear % 4 == 0 && estimatedYear % 100 != 0) || estimatedYear % 400 == 0)
+					{
+						distance1 = returningDay;
+						int i = returningMonth - 1;
+						for (i; i > estimatedMonth; i--)
+						{
+							if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 += 31;
+							else if (i == 2) distance1 += 29;
+							else distance1 += 30;
+						}
+						daysover = distance1 + (30 - estimatedDay);
+						fee = 5000 * daysover;
+						return fee;
+					}
+					else // not leap year
+					{
+						distance1 = returningDay;
+						int i = returningMonth - 1;
+						for (i; i > estimatedMonth; i--)
+						{
+							if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance1 += 31;
+							else if (i == 2) distance1 += 28;
+							else distance1 += 30;
+						}
+						daysover = distance1 + (30 - estimatedDay);
+						fee = 5000 * daysover;
+						return fee;
+					}
+				}
+			}
+		}
+		// In-condition : estimatedYear < returningYear
+		else
+		{
+			distance2 = 0;
+			// calculating distance from estimatedDay, estimatedMonth to 31/12/estimatedYear.
+			if (estimatedMonth == 2) // if estimatedMonth = 2
+			{
+				//check leap year
+				if ((estimatedYear % 4 == 0 && estimatedYear % 100 != 0) || estimatedYear % 400 == 0)
+				{
+					// calculating distance from returningDay of returningMonth to estimatedDay of estimatedMonth
+					int i = estimatedMonth + 1;
+					for (i; i <= 12; i++)
+					{
+						if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance2 += 31;
+						else if (i == 2) distance2 += 29;
+						else distance2 += 30;
+					}
+					daysover = distance2 + (29 - estimatedDay);
+					fee = 5000 * daysover;
+					return fee;
+				}
+				else // not a leap year
+				{
+					int i = estimatedMonth + 1;
+					for (i; i <= 12; i++)
+					{
+						if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance2 += 31;
+						else if (i == 2) distance2 += 28;
+						else distance2 += 30;
+					}
+					daysover = distance2 + (28 - estimatedDay);
+					fee = 5000 * daysover;
+					return fee;
+				}
+			}
+			else // if estimatedMonth != 2
+			{
+				// if estimatedmonth in 1,3,5,7,8,10,12
+				if (estimatedMonth == 1 || estimatedMonth == 3 || estimatedMonth == 5 || estimatedMonth == 7 || estimatedMonth == 8 || estimatedMonth == 10 || estimatedMonth == 12)
+				{
+					// check leap year
+					if ((estimatedYear % 4 == 0 && estimatedYear % 100 != 0) || estimatedYear % 400 == 0)
+					{
+						int i = estimatedMonth + 1;
+						for (i; i <= 12; i++)
+						{
+							if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) distance2 += 31;
+							else if (i == 2) distance2 += 29;
+							else distance2 += 30;
+						}
+					}
+				}
+			}
+		}
+	}
 }

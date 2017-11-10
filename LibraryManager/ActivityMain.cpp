@@ -1,6 +1,4 @@
-#include "Introduction.h"
-#include "BookManagement.h"
-#include "StudentManagement.h"
+#include "ActivityMain.h"
 
 void main() {
 	int menuchoice, smchoice, bmchoice;
@@ -10,7 +8,24 @@ void main() {
 	while (true)
 	{
 		menuchoice = MainMenu();
-
+		switch (menuchoice)
+		{
+		case 1: {
+			while (true)
+			{
+				smchoice = StudentManagementMenu();
+				switch (smchoice)
+				{
+				case 1: StudentListing(); break;
+				case 2: BookCreating(); break;
+				default:
+					break;
+				}
+			}
+		}
+		default:
+			break;
+		}
 	}
 	_getch();
 }

@@ -1,14 +1,6 @@
 #include "StudentManagement.h"
+#include "StudentComponents.h"
 
-// Initialising arrays include student information
-char LibraryID[Max][25], Name[Max][25], ID[Max][25], Birth[Max][25], Sex[Max][25], Email[Max][25], Address[Max][50];
-int DayCre[Max];
-int MonthCre[Max];
-int YearCre[Max];
-int DayEx[Max];
-int MonthEx[Max];
-int YearEx[Max];
-int studentcounter = 0; // Initialising student number counter
 /* Starting EditStudent SubMenu
 Input : ESSubMenu		 choice
 Output: choide
@@ -90,7 +82,7 @@ Output: DayEx, MonthEx, YearEx
 void DayExpired() {
 	DayEx[studentcounter] = DayCre[studentcounter];
 	MonthEx[studentcounter] = MonthCre[studentcounter];
-	YearEx[studentcounter] = YearCre[studentcounter] + 2;
+	YearEx[studentcounter] = YearCre[studentcounter] + 4;
 }
 /* Starting StudentListing function
 Input : None
@@ -121,6 +113,7 @@ void StudentListing() {
 
 		}
 	}
+	_getch();
 }
 /* Starting StudentCreating function
 Input : arrays with student informations
@@ -130,48 +123,45 @@ void StudentCreating() {
 	while (true)
 	{
 		int choice;
-		printf("============= Menu Chinh Sua Va Cap Nhat Doc Gia =============\n");
-		printf("                 -> 1. Cap nhat thong tin doc gia\n             ");
+		printf("===================== Menu Tao Doc Gia ========================\n");
+		printf("                 -> 1. Tao doc gia moi \n             ");
 		printf("                 -> 2. Thoat\n                                  ");
 		printf("===============================================================\n");
 		printf("      -> Nhap vao lua chon cua ban : ");
 		scanf_s("%d", &choice);
-		switch (choice) {
-		case 2: break;
-		case 1: {
+	if (choice==1){
 			if (studentcounter > Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
 			else
-				while (studentcounter < Max)
-				{
-					printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
-					fflush(stdin);
-					getchar();// Clear the caches
-								   // Input the informations
-					printf("  -> Ma so doc gia thu %d : ", studentcounter + 1);
-					gets_s(LibraryID[studentcounter]);
-					printf("  -> Ten doc gia thu %d : ", studentcounter + 1);
-					gets_s(Name[studentcounter]);
-					printf("  -> CMND doc gia thu %d : ", studentcounter + 1);
-					gets_s(ID[studentcounter]);
-					printf("  -> Ngay thang nam sinh doc gia thu %d : ", studentcounter + 1);
-					gets_s(Birth[studentcounter]);
-					printf("  -> Gioi tinh doc gia thu %d : ", studentcounter + 1);
-					gets_s(Sex[studentcounter]);
-					printf("  -> Email doc gia thu %d : ", studentcounter + 1);
-					gets_s(Email[studentcounter]);
-					printf("  -> Dia chi doc gia thu %d (luu y khong dung dau cham hay dau phay) : ", studentcounter + 1);
-					gets_s(Address[studentcounter]);
-					//Library card creating
-					printf("  -> Nhap vao thoi gian lam the thu vien : \n");
-					DayCreating();
-					// Automatic evaluate expired time
-					DayExpired();
-					studentcounter++; break;
+			{
+				printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
+				fflush(stdin);
+				getchar();// Clear the caches
+							   // Input the informations
+				printf("  -> Ma so doc gia thu %d : ", studentcounter + 1);
+				gets_s(LibraryID[studentcounter]);
+				printf("  -> Ten doc gia thu %d : ", studentcounter + 1);
+				gets_s(Name[studentcounter]);
+				printf("  -> CMND doc gia thu %d : ", studentcounter + 1);
+				gets_s(ID[studentcounter]);
+				printf("  -> Ngay thang nam sinh doc gia thu %d : ", studentcounter + 1);
+				gets_s(Birth[studentcounter]);
+				printf("  -> Gioi tinh doc gia thu %d : ", studentcounter + 1);
+				gets_s(Sex[studentcounter]);
+				printf("  -> Email doc gia thu %d : ", studentcounter + 1);
+				gets_s(Email[studentcounter]);
+				printf("  -> Dia chi doc gia thu %d (luu y khong dung dau cham hay dau phay) : ", studentcounter + 1);
+				gets_s(Address[studentcounter]);
+				//Library card creating
+				printf("  -> Nhap vao thoi gian lam the thu vien : \n");
+				DayCreating();
+				// Automatic evaluate expired time
+				DayExpired();
+				studentcounter++; break;
+			}
+			continue;
 				}
-			
-		} break;
-		default: printf("Lenh ban vua nhap vao khong hop le !"); break;
-		}
+	else if (choice == 2) break;
+		
 	}
 }
 /* Starting StudentEditing function
@@ -211,7 +201,7 @@ void StudentEditing(int number) {
 			YearCre[number] = yearedit;
 			DayEx[number] = dayedit;
 			MonthEx[number] = monthedit;
-			YearEx[number] = yearedit + 2;
+			YearEx[number] = yearedit + 4;
 		} break;
 		case 1: {
 			fflush(stdin);

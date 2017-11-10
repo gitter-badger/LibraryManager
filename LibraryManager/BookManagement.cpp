@@ -1,10 +1,5 @@
 #include "BookManagement.h"
-// Initialising arrays stored book informations
-char ISBN[Max][30], BookName[Max][30], Author[Max][25], Producer[Max][30], YearProducing[Max][25],
-Genre[Max][25], Cost[Max][25];
-int Amount[Max];
-// Init book in library counter
-int bookcounter = 0;
+#include "BookComponents.h"
 /* Starting GetBookInfo function
 Input: book position
 Output: Info
@@ -13,7 +8,7 @@ Output: Info
 Input: informations on arrays
 Output : informations stored for max 1 books
 */
-void BookDeclaration() {
+ void BookDeclaration() {
 	while (true)
 	{
 		if (bookcounter > Max) printf("Khong du bo nho de them sach !");
@@ -48,7 +43,7 @@ void BookDeclaration() {
 Input : none
 Output : book informations
 */
-void BookCreating() {
+ void BookCreating() {
 	while (true)
 	{
 		if (bookcounter > Max) printf("Khong du bo nho de tao hay cap nhat sach !");
@@ -80,7 +75,7 @@ void BookCreating() {
 Input : none
 Output : listed books
 */
-void BookListing() {
+ void BookListing() {
 	for (int i = 0; i < bookcounter; i++)
 	{
 		printf("============= DANH SACH CAC SACH CO TRONG THU VIEN =============\n");
@@ -107,7 +102,7 @@ void BookListing() {
 Input : book position
 Output: listed books available
 */
-void BookEditing(int number){
+ void BookEditing(int number){
 	if (number > 0 && number < Max)
 	{
 		int choice;
@@ -210,7 +205,7 @@ void EBSubMenu(int number) {
 Input: book position
 Output: Book informations
 */
-void SeeBookChanges(int number) {
+ void SeeBookChanges(int number) {
 	printf("============ Thong Tin Cuon Sach Thu %d Sau Khi Chinh Sua ==============\n", number);
 	printf("   -> Ma sach : ");
 	puts(ISBN[number + 1]);
@@ -232,7 +227,7 @@ void SeeBookChanges(int number) {
 Input: book position
 Output: Listed book available
 */
-void BookDeleting(int number) {
+ void BookDeleting(int number) {
 	int flag = 0;
 	if (number >= 0 && number < bookcounter) {
 		for (int i = number - 1; i < bookcounter - 1; i++) {
@@ -257,7 +252,7 @@ void BookDeleting(int number) {
 Input: Book's name
 Output : Return info if it matched
 */
-void SearchByBookName(char name[30]) {
+ void SearchByBookName(char name[30]) {
 	int flag = 0;
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(name, BookName[i]) == 0) {
@@ -287,7 +282,7 @@ void SearchByBookName(char name[30]) {
 Input: ISBN[25]
 Output : Return info if it matched
 */
-void SearchByISBN(char isbn[30]) {
+ void SearchByISBN(char isbn[30]) {
 	int flag = 0;
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(isbn, ISBN[i]) == 0) {
