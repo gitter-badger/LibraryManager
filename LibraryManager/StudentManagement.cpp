@@ -6,6 +6,7 @@ Input : ESSubMenu		 choice
 Output: choide
 */
 void ESSubMenu(int number) {
+	system("cls");
 	int choice;
 	while (true)
 	{
@@ -19,8 +20,8 @@ void ESSubMenu(int number) {
 		if (choice == 3) break;
 		switch (choice)
 		{
-		case 1: StudentEditing(number); break;
-		case 2: SeeLocalChanges(number); break;
+		case 1: StudentEditing(number-1); break;
+		case 2: SeeLocalChanges(number-1); break;
 		default: printf("Chuc nang ban nhap vao khong hop le ! \n");
 			break;
 		}
@@ -204,6 +205,7 @@ void StudentEditing(int number) {
 			YearEx[number] = yearedit + 4;
 		} break;
 		case 1: {
+			getchar();
 			fflush(stdin);
 			char LibIDNew[25];
 			printf("Nhap vao ma thu vien moi : ");
@@ -211,6 +213,7 @@ void StudentEditing(int number) {
 			strcpy_s(LibraryID[number - 1], LibIDNew);
 		} break;
 		case 2: {
+			getchar();
 			fflush(stdin);
 			char NewName[25];
 			printf("Nhap vao ten moi : ");
@@ -218,6 +221,7 @@ void StudentEditing(int number) {
 			strcpy_s(Name[number - 1], NewName);
 		} break;
 		case 3: {
+			getchar();
 			fflush(stdin);
 			char NewID[25];
 			printf("Nhap vao CMND moi : ");
@@ -225,6 +229,7 @@ void StudentEditing(int number) {
 			strcpy_s(ID[number - 1], NewID);
 		} break;
 		case 4: {
+			getchar();
 			fflush(stdin);
 			char NewBirth[25];
 			printf("Nhap vao ngay thang nam sinh moi : ");
@@ -232,6 +237,7 @@ void StudentEditing(int number) {
 			strcpy_s(Birth[number - 1], NewBirth);
 		} break;
 		case 5: {
+			getchar();
 			fflush(stdin);
 			char NewSex[25];
 			printf("Nhap vao gioi tinh moi : ");
@@ -239,6 +245,7 @@ void StudentEditing(int number) {
 			strcpy_s(Sex[number - 1], NewSex);
 		} break;
 		case 6: {
+			getchar();
 			fflush(stdin);
 			char NewEmail[25];
 			printf("Nhap email moi : ");
@@ -246,6 +253,7 @@ void StudentEditing(int number) {
 			strcpy_s(Email[number - 1], NewEmail);
 		} break;
 		case 7: {
+			getchar();
 			fflush(stdin);
 			char NewAddress[50];
 			printf("Nhap dia chi moi : ");
@@ -256,7 +264,13 @@ void StudentEditing(int number) {
 			break;
 		}
 	}
-	else printf("Du lieu hoc sinh khong ton tai hoac khong trung khop ! Vui long thoat ra va chon lai..");
+	else
+	{
+		system("cls");
+		printf("Du lieu hoc sinh khong ton tai hoac khong trung khop ! Vui long thoat ra va chon lai..\n");
+		_getch();
+		Sleep(1000);
+	}
 }
 /* Starting SeeLocalChanges function
 Input : student position
@@ -278,8 +292,9 @@ void SeeLocalChanges(int number) {
 	puts(Email[number - 1]);
 	printf("Dia chi : ");
 	puts(Address[number - 1]);
-	printf("Thoi gian lam the thu vien : %d/%d/%d", DayCre[number - 1], MonthCre[number - 1], YearCre[number - 1]);
-	printf("Ngay het han  : %d/%d/%d", DayEx[number - 1], MonthEx[number - 1], YearEx[number - 1]);
+	printf("Thoi gian lam the thu vien : %d/%d/%d\n", DayCre[number - 1], MonthCre[number - 1], YearCre[number - 1]);
+	printf("Ngay het han  : %d/%d/%d\n", DayEx[number - 1], MonthEx[number - 1], YearEx[number - 1]);
+	Sleep(1000);
 
 }
 /*Starting StudentDelete function

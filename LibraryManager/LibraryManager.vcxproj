@@ -36,6 +36,7 @@
     <ClCompile Include="Introduction.cpp" />
     <ClCompile Include="LibraryCard.cpp" />
     <ClCompile Include="LibraryComponents.cpp" />
+    <ClCompile Include="Statistics.cpp" />
     <ClCompile Include="StudentComponents.cpp" />
     <ClCompile Include="StudentManagement.cpp" />
   </ItemGroup>

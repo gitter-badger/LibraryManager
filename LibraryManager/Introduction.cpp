@@ -83,8 +83,7 @@ int MainMenu() {
 	printf( "      ****************************************************************************\n");
 	printf( "                            1 .Quan Ly Doc Gia                                   \n");
 	printf( "                            2 .Quan Ly Sach                                      \n");
-	printf( "                            3 .Lap Phieu Muon Sach		                           \n");
-	printf( "                            4 .Lap Phieu Tra Sach                                \n");
+	printf( "                            3 .Quan Li Phieu Muon,Tra Sach	                      \n");
 	printf( "                            5 .Cac  Thong Ke Co Ban                              \n");
 	printf( "                            0. Xem Thong Tin Tac Gia                             \n");
 	printf( "\t     ***************************************************************************\n");

@@ -5,7 +5,6 @@
 #include <conio.h>
 #include <string.h>
 #define Max 1000
-
 //#include <stdlib.h>
 //#include <Windows.h>
 void CardCreatingMenu();           // Create borrowing or returning card menu

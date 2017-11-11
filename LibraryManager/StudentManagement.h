@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+#include <Windows.h>
 #define Max 1000
 void StudentListing();  // See students
 void StudentCreating();  // Create a new student

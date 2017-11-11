@@ -17,7 +17,16 @@ void main() {
 				switch (smchoice)
 				{
 				case 1: StudentListing(); break;
-				case 2: BookCreating(); break;
+				case 2: StudentCreating(); break;
+				case 3: 
+				{
+					int location;
+					printf("  -> Nhap vao so thu tu hoc sinh can sua : ");
+					scanf_s("%d", &location);
+					StudentEditing(location-1);
+					ESSubMenu(location);
+					break;
+				}
 				default:
 					break;
 				}
