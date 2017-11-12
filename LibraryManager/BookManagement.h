@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+#include <Windows.h>
 #define Max 1000
 
 //void GetBookInfo(int position); //Print info of a book (No need)

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActivityMain.h" />
+    <ClInclude Include="MainActivity.h" />
     <ClInclude Include="BookComponents.h" />
     <ClInclude Include="BookManagement.h" />
     <ClInclude Include="Introduction.h" />
@@ -30,7 +30,7 @@
     <ClInclude Include="StudentManagement.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActivityMain.cpp" />
+    <ClCompile Include="MainActivity.cpp" />
     <ClCompile Include="BookComponents.cpp" />
     <ClCompile Include="BookManagement.cpp" />
     <ClCompile Include="Introduction.cpp" />

@@ -44,42 +44,61 @@ Input : none
 Output : book informations
 */
  void BookCreating() {
-	while (true)
-	{
-		if (bookcounter > Max) printf("Khong du bo nho de tao hay cap nhat sach !");
-		else while (bookcounter<Max)
-		{
-			printf("============ THONG TIN CUON SACH THU %d ============\n", bookcounter + 1);
-			fflush(stdin);
-			printf("    -> Nhap ma sach : ");
-			gets_s(ISBN[bookcounter]);
-			printf("    -> Nhap ten sach : ");
-			gets_s(BookName[bookcounter]);
-			printf("    -> Nhap tac gia : ");
-			gets_s(Author[bookcounter]);
-			printf("    -> Nhap ten nha san xuat : ");
-			gets_s(Producer[bookcounter]);
-			printf("    -> Nhap nam san xuat : ");
-			gets_s(YearProducing[bookcounter]);
-			printf("    -> Nhap the loai : ");
-			gets_s(Genre[bookcounter]);
-			printf("    -> Nhap gia : ");
-			gets_s(Cost[bookcounter]);
-			printf("    -> Nhap vao so luong sach : ");
-			scanf_s("%d", Amount[bookcounter]);
-			bookcounter++; break;
-		}
-	}
-}
+	 while (true)
+	 {
+		 int choice;
+		 printf("===================== MENU TAO SACH ========================\n");
+		 printf("                 -> 1. Tao sach moi                         \n");
+		 printf("                 -> 2. Thoat                                   \n");
+		 printf("===============================================================\n");
+		 printf("      -> Nhap vao lua chon cua ban : ");
+		 scanf_s("%d", &choice);
+		 if (choice == 1)
+		 {
+			 if (bookcounter > Max) printf("Khong du bo nho de tao hay cap nhat sach !");
+			 else while (bookcounter < Max)
+			 {
+				 printf("============ THONG TIN CUON SACH THU %d ============\n", bookcounter + 1);
+				 fflush(stdin);
+				 getchar();
+				 printf("    -> Nhap ma sach : ");
+				 gets_s(ISBN[bookcounter]);
+				 printf("    -> Nhap ten sach : ");
+				 gets_s(BookName[bookcounter]);
+				 printf("    -> Nhap tac gia : ");
+				 gets_s(Author[bookcounter]);
+				 printf("    -> Nhap ten nha san xuat : ");
+				 gets_s(Producer[bookcounter]);
+				 printf("    -> Nhap nam san xuat : ");
+				 gets_s(YearProducing[bookcounter]);
+				 printf("    -> Nhap the loai : ");
+				 gets_s(Genre[bookcounter]);
+				 printf("    -> Nhap gia : ");
+				 gets_s(Cost[bookcounter]);
+				 printf("    -> Nhap vao so luong sach : ");
+				 scanf_s("%d", &Amount[bookcounter]);
+				 bookcounter++; 
+				 Sleep(1000);
+				 printf("Tao sach moi thanh cong !\n");
+				 Sleep(500);
+				 break;
+			 }
+			// continue;
+		 }
+		 else if (choice == 2) break;
+		 break;
+	 }
+ }
 /* Starting BookListing function
 Input : none
 Output : listed books
 */
  void BookListing() {
+	 printf("\t\t============= DANH SACH CAC SACH CO TRONG THU VIEN =============\n\n");
+		if (bookcounter <= 0) printf("Hien tai chua co cuon sach nao trong co so du lieu thu vien !\n Vui long them sach.. \n");
 	for (int i = 0; i < bookcounter; i++)
 	{
-		printf("============= DANH SACH CAC SACH CO TRONG THU VIEN =============\n");
-		printf(" \n");
+		printf("\n");
 		printf(" ============ THONG TIN CUON SACH THU %d =======================\n", i + 1);
 		printf("   -> Ma sach : ");
 		puts(ISBN[i]);
@@ -95,15 +114,16 @@ Output : listed books
 		puts(Genre[i]);
 		printf("   -> Gia thanh : ");
 		puts(Cost[i]);
-		printf("   -> So luong co san : %d", Amount[i]);
+		printf("   -> So luong co san : %d\n", Amount[i]);
 	}
+	_getch();
 }
 /* Starting BookEditing function
 Input : book position
 Output: listed books available
 */
  void BookEditing(int number){
-	if (number > 0 && number < Max)
+	if (number > 0 && number <= bookcounter)
 	{
 		int choice;
 		printf("============== MENU CHINH SUA SACH ================\n");
@@ -118,6 +138,7 @@ Output: listed books available
 		printf("==================================================\n");
 		printf(" Nhap vao lua chon cua ban : ");
 		scanf_s("%d", &choice);
+		getchar();
 		switch (choice)
 		{
 		case 1: {
@@ -126,13 +147,19 @@ Output: listed books available
 			printf("Nhap vao ISBN moi : ");
 			gets_s(NewISBN);
 			strcpy_s(ISBN[number-1], NewISBN);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 2: {
 			fflush(stdin);
-			char NewBookName[30];
+			char NewBookName[25];
 			printf(" Nhap vao ten moi : ");
 			gets_s(NewBookName);
 			strcpy_s(BookName[number - 1], NewBookName);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 3: {
 			fflush(stdin);
@@ -140,6 +167,9 @@ Output: listed books available
 			printf("Nhap vao tac gia moi : ");
 			gets_s(NewAuthor);
 			strcpy_s(Author[number - 1], NewAuthor);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 4: {
 			fflush(stdin);
@@ -147,6 +177,9 @@ Output: listed books available
 			printf("Nhap vao nha xuat ban moi : ");
 			gets_s(NewProducer);
 			strcpy_s(Producer[number - 1], NewProducer);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 5: {
 			fflush(stdin);
@@ -154,6 +187,9 @@ Output: listed books available
 			printf("Nhap vao nam san xuat moi : ");
 			gets_s(NewYearProducing);
 			strcpy_s(YearProducing[number - 1], NewYearProducing);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 6: {
 			fflush(stdin);
@@ -161,6 +197,9 @@ Output: listed books available
 			printf(" Nhap vao the loai moi : ");
 			gets_s(NewGenre);
 			strcpy_s(Genre[number - 1], NewGenre);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
 		case 7: {
 			fflush(stdin);
@@ -168,12 +207,25 @@ Output: listed books available
 			printf("Nhap vao gia moi : ");
 			gets_s(NewCost);
 			strcpy_s(Cost[number - 1], NewCost);
+			Sleep(1000);
+			printf("Chinh sua thanh cong !");
+			Sleep(500);
 		} break;
-		default: printf(" Lua chon khong hop le ! Vui long thu lai ..");
+		default: 
+		{
+			printf(" Lua chon khong hop le ! Vui long thu lai ..");
+			Sleep(500);
 			break;
 		}
+
+		}
 	}
-	else printf("Co loi xay ra khi chinh sua! Vui long thoat ra menu chinh va thu lai..");
+	else
+	{
+		printf("Co loi xay ra khi chinh sua! Vui long thoat ra menu chinh va thu lai..");
+		Sleep(500);
+	}
+
 }
 /* Starting EBSubMenu function
 Input : choice
@@ -182,46 +234,58 @@ Output :
 void EBSubMenu(int number) {
 	while (true)
 	{
-		int choice;
-		printf("=========== Menu Chinh Sua Va Cap Nhat Sach =================\n");
-		printf("\n");
-		printf("     -> 1. Tiep tuc chinh sua va cap nhat cuon sach\n");
-		printf("     -> 2. Xem thong tin cuon sach sau khi chinh sua\n");
-		printf("     -> 3. Thoat chinh sua\n");
-		printf("=============================================================\n");
-		printf("  Nhap vao lua chon cua ban : ");
-		scanf_s("%d", &choice);
-		if (choice == 3) break;
-		switch (choice)
+		if (number > 0 && number <= bookcounter)
 		{
-		case 1: BookEditing(number); break;
-		case 2: SeeBookChanges(number); break;
-		default: printf("Lenh khong ton tai, xin thu lai..");
+			system("cls");
+			int choice;
+			printf("==================== MENU CHINH SUA SACH ====================\n");
+			printf("\n");
+			printf("     -> 1. Tiep tuc chinh sua va cap nhat cuon sach thu %d\n", number);
+			printf("     -> 2. Xem thong tin cuon sach thu %d sau khi chinh sua\n", number);
+			printf("     -> 3. Thoat chinh sua\n");
+			printf("=============================================================\n");
+			printf("  Nhap vao lua chon cua ban : ");
+			scanf_s("%d", &choice);
+			if (choice == 3) break;
+			switch (choice)
+			{
+			case 1: BookEditing(number); break;
+			case 2: SeeBookChanges(number); break;
+			default: printf("Lenh khong ton tai, xin thu lai..");
+				break;
+			}
+		}
+		else
+		{
+			printf("Du lieu sach khong ton tai trong thu vien ! Vui long thu lai ...\n");
+			Sleep(1000);
 			break;
 		}
 	}
+	//_getch();
 }
 /* Starting SeeBookChanges function
 Input: book position
 Output: Book informations
 */
  void SeeBookChanges(int number) {
-	printf("============ Thong Tin Cuon Sach Thu %d Sau Khi Chinh Sua ==============\n", number);
+	printf("============ THONG TIN CUON SACH THU %d SAU KHI CHINH SUA ==============\n", number);
 	printf("   -> Ma sach : ");
-	puts(ISBN[number + 1]);
+	puts(ISBN[number - 1]);
 	printf("   -> Ten sach : ");
-	puts(BookName[number + 1]);
+	puts(BookName[number - 1]);
 	printf("   -> Tac gia : ");
-	puts(Author[number + 1]);
+	puts(Author[number - 1]);
 	printf("   -> Nha xuat ban : ");
-	puts(Producer[number + 1]);
+	puts(Producer[number - 1]);
 	printf("   -> Nam xuat ban : ");
-	puts(YearProducing[number + 1]);
+	puts(YearProducing[number - 1]);
 	printf("   -> The loai : ");
-	puts(Genre[number + 1]);
+	puts(Genre[number - 1]);
 	printf("   -> Gia thanh : ");
-	puts(Cost[number + 1]);
-	printf("   -> So luong co san : %d", Amount[number + 1]);
+	puts(Cost[number - 1]);
+	printf("   -> So luong co san : %d\n", Amount[number - 1]);
+	_getch();
 }
 /* Starting BookDeleting function
 Input: book position
@@ -229,24 +293,31 @@ Output: Listed book available
 */
  void BookDeleting(int number) {
 	int flag = 0;
-	if (number >= 0 && number < bookcounter) {
+	if (number > 0 && number <= bookcounter) {
 		for (int i = number - 1; i < bookcounter - 1; i++) {
-			strcpy_s(ISBN[number], ISBN[number + 1]);
-			strcpy_s(BookName[number], BookName[number + 1]);
-			strcpy_s(Author[number], Author[number + 1]);
-			strcpy_s(Producer[number], Producer[number + 1]);
-			strcpy_s(YearProducing[number], YearProducing[number + 1]);
-			strcpy_s(Genre[number], Genre[number + 1]);
-			strcpy_s(Cost[number], Cost[number + 1]);
-			Amount[number] = Amount[number + 1];
+			strcpy_s(ISBN[i], ISBN[i + 1]);
+			strcpy_s(BookName[i], BookName[i + 1]);
+			strcpy_s(Author[i], Author[i + 1]);
+			strcpy_s(Producer[i], Producer[i + 1]);
+			strcpy_s(YearProducing[i], YearProducing[i + 1]);
+			strcpy_s(Genre[i], Genre[i + 1]);
+			strcpy_s(Cost[i], Cost[i + 1]);
+			Amount[i] = Amount[i + 1];
 		}
-		bookcounter--; flag = 1;
+		bookcounter--;
+		flag = 1;
 	}
 	if (flag == 1) {
-		printf("============ Danh Sach Quyen Sach Trong Thu Vien Sau Khi Xoa ================\n");
+		printf(" -> Xoa thanh cong !\n");
+		printf("\n");
+		Sleep(500);
 		BookListing();
 	}
-	else printf("Co loi khi xoa, vui long thu lai..");
+	else
+	{
+		printf("Co loi khi xoa, vui long thu lai..");
+		Sleep(500);
+	}
 }
 /* Starting SearchByBookName function
 Input: Book's name
