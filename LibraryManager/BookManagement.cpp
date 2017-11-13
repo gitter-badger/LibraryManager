@@ -344,10 +344,16 @@ Output : Return info if it matched
 			printf("    -> Gia(VND) : ");
 			puts(Cost[i]);
 			printf("==========================================\n");
-			flag = 1; break;
+			flag++;
 		}	
 	}
-	if (flag != 1) printf("Khong tim thay sach hoac co loi khi tim kiem. Vui long thu lai..");
+	if (flag == 0) printf("Khong tim thay ket qua !");
+	else
+	{
+		printf("\n");
+		printf("   - > Tong cong co %d sach duoc tim thay.\n", flag);
+	}
+	_getch();
 }
 /* Starting SearchByISBN function
 Input: ISBN[25]
@@ -374,8 +380,14 @@ Output : Return info if it matched
 			printf("    -> Gia(VND) : ");
 			puts(Cost[i]);
 			printf("==========================================\n");
-			flag = 1; break;
+			flag++;
 		}
 	}
-	if (flag != 1) printf("Khong tim thay ket qua hoac co loi khi tim kiem, vui long thu lai..");
+	if (flag == 0) printf("Khong tim thay ket qua !");
+	else
+	{
+		printf("\n");
+		printf("   - > Tong cong co %d sach duoc tim thay.\n", flag);
+	}
+	_getch();
 }

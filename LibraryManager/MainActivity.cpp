@@ -122,10 +122,49 @@ void main() {
 					BookDeleting(location);
 					break;
 				}
+				case 5: 
+				{
+					system("cls");
+					fflush(stdin);
+					char isbn[25];
+					getchar();
+					printf(" -> Nhap ma sach(ISBN) can tim : ");
+					gets_s(isbn);
+					SearchByISBN(isbn);
+					break;
+				}
+				case 6: 
+				{
+					system("cls");
+					fflush(stdin);
+					char bookname[30];
+					getchar();
+					printf(" -> Nhap vao ten sach can tim : ");
+					gets_s(bookname);
+					SearchByBookName(bookname);
+					break;
+				}
 				default:
 					break;
 				}
 			}
+		} break;
+		case 3:  // card menu
+		{
+			system("cls");
+			fflush(stdin);
+			CardCreatingMenu();
+			break;
+		}
+		case 0 :
+		{
+			return;
+		}
+		case 5: // about author
+		{
+			system("cls");
+			Introduction();
+			break;
 		} break;
 		default:
 			break;

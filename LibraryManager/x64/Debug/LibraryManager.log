@@ -1,1 +1,3 @@
-﻿
+﻿  LibraryCard.cpp
+c:\users\hyperion0201\source\repos\librarymanager\librarymanager\librarycard.cpp(551): warning C4715: 'PenaltyFee': not all control paths return a value
+  LibraryManager.vcxproj -> C:\Users\hyperion0201\source\repos\LibraryManager\x64\Debug\LibraryManager.exe

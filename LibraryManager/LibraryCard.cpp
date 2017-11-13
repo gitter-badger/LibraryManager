@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include "BookComponents.h"
+#include "StudentComponents.h"
 /*Starting BorrowingCardInput function
 Type : void
 Input : none
@@ -16,26 +17,84 @@ void BorrowingCardInput() {
 		else while (borrowedcard < Max)
 		{
 			fflush(stdin); //Clear caches
-			printf("\t============ NHAP THONG TIN DOC GIA MUON ============\n");
-			printf("\t-> Nhap ma doc gia can muon : ");
-			gets_s(BorrowingID[borrowedcard]);
+			do {
+				int flag = 0;
+				printf("\t============ NHAP THONG TIN DOC GIA MUON ============\n");
+				printf("\t-> Nhap ma doc gia can muon : ");
+				gets_s(BorrowingID[borrowedcard]);
+				for (int i =0;i<studentcounter;i++)
+					if (strcmp(BorrowingID[borrowedcard], LibraryID[i]) == 0)
+					{
+						flag = 1; // already in db
+						break;
+					}
+				if (flag == 1) break;
+				else if (flag == 0) {
+					printf(" -> Chua co thong tin doc gia trong thu vien ! Vui long tao hoac cap nhat ! \n");
+					Sleep(1000);
+					system("cls");
+					continue;
+				}
+			} while (true);
 			
-			printf("\t=============== NHAP NGAY MUON =====================\n");
+		// input borrowing day	
+			printf("\n");
+			printf("\t=============== NHAP NGAY MUON ========================\n");
 			printf("\t  -> Nhap ngay muon : ");
 			scanf_s("%d", &BorrowingDay[borrowedcard]);
 			printf("\t  -> Nhap thang muon : ");
 			scanf_s("%d", &BorrowingMonth[borrowedcard]);
 			printf("\t  -> Nhap nam muon : ");
 			scanf_s("%d", &BorrowingYear[borrowedcard]);
+			printf("\n");
 			printf("\t=============== NHAP THONG TIN SACH MUON ==============\n");
-			printf("\t   -> Nhap so luong sach doc gia can muon : ");
-			scanf_s("%d", &bookInATime[borrowedcard]);
+			do
+			{
+				printf("\n");
+				printf("\t  -> Nhap so luong sach doc gia can muon : ");
+				scanf_s("%d", &bookInATime[borrowedcard]);
+				if (bookInATime[borrowedcard] > bookcounter)
+				{
+					printf("  -> So sach muon vuot qua du lieu thu vien ! Vui long thu lai !\n");
+					Sleep(1000);
+					continue;
+				}
+				else break;
+			} while (true);
+			
+			getchar();
 			for (int i = 0; i < bookInATime[borrowedcard]; i++) {
 				fflush(stdin);
-				getchar();
-				printf("\t  -> Nhap ma sach thu %d :  ", i + 1);
-				gets_s(BorrowingISBN[i]);
-				borrowedbook++;
+				do
+				{
+					int flag = 0;
+					printf("\t  -> Nhap ma sach thu %d :  ", i + 1);
+					gets_s(BorrowingISBN[i]);
+					for (int j = 0; j < bookcounter; j++)
+					{
+						if (strcmp(BorrowingISBN[i], ISBN[j]) == 0)
+						{
+							flag = 1; // already in db
+							Amount[j]--;
+							break;
+						}
+					}
+					if (flag == 1)
+					{
+						printf(" -> Them sach vao the muon thanh cong ! \n");
+						Sleep(1000);
+						break;
+					}
+
+					else if (flag == 0)
+					{			
+						printf(" -> Thong tin sach khong ton tai trong thu vien ! Vui long tao moi hoac cap nhat !\n");
+						Sleep(1000);
+						system("cls");
+						continue;
+					}
+
+				} while (true);
 			}
 			borrowedcard++; break;
 		}
@@ -90,28 +149,46 @@ Output : print BorrowingCard info
 */
 void BorrowingCardListing() {
 	system("cls");
-	printf("=================== PHIEU MUON SACH CUA DOC GIA  ==================\n");
-	printf("\n");
-	printf("   -> Ma so doc gia muon sach : ");
-	puts(BorrowingID[borrowedcard - 1]);
-	printf("   -> Thoi gian muon sach gan nhat la : %d/%d/%d\n", BorrowingDay[borrowedcard - 1], BorrowingMonth[borrowedcard - 1], BorrowingYear[borrowedcard - 1]);
-	printf("   -> Thoi gian tra sach du kien : %d/%d/%d\n", estimatedDay[borrowedcard - 1], estimatedMonth[borrowedcard - 1], estimatedYear[borrowedcard - 1]);
-	printf("   -> So sach da muon : %d", bookInATime[borrowedcard - 1]);
-	printf("   -> Danh sach ma sach va ten sach da muon :\n");
-	for (int i = 0; i < bookInATime[borrowedcard - 1]; i++)
+	if (borrowedcard == 0) printf(" -> Hien tai khong co doc gia nao muon sach !\n");
+	else
 	{
-		printf("              -> ISBN cuon sach thu %d : ", i+1);
-		puts(BorrowingISBN[i]);
-		printf("              -> Ten cuon sach thu %d : ", i + 1);
-		for (int j = 0; j < bookcounter; j++)
-			if (strcmp(BorrowingISBN[i], ISBN[j]) == 0) puts(BookName[j]);
+		printf("  -> Tong so co : %d phieu muon\n\n ", borrowedcard);
+		printf("=================== PHIEU MUON SACH CUA DOC GIA  ==================\n");
+		printf("\n");
+		for (int i = 0; i < borrowedcard; i++)
+		{
+			printf("================ THONG TIN PHIEU MUON DOC GIA THU %d ================\n", i + 1);
+			printf("   -> Ma so doc gia : ");
+			puts(BorrowingID[i]);
+			printf("   -> Ten doc gia : ");
+			for (int j = 0; j < studentcounter; j++)
+				if (strcmp(BorrowingID[i], LibraryID[j]) == 0)
+				{
+					puts(Name[j]);
+					break;
+				}
+			printf("   -> Thoi gian muon sach gan nhat la : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
+			printf("   -> Thoi gian tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
+			printf("   -> So sach da muon : %d\n", bookInATime[i]);
+			printf("   -> DANH SACH CAC CUON SACH DA MUON :\n");
+			for (int k = 0; k < bookInATime[i]; k++)
+			{
+				printf("              -> ISBN cuon sach thu %d : ",k + 1);
+				puts(BorrowingISBN[k]);
+				printf("              -> Ten cuon sach thu %d  : ", k + 1);
+				for (int l = 0; l < bookcounter; l++)
+					if (strcmp(BorrowingISBN[k], ISBN[l]) == 0) puts(BookName[l]);
+			}
+			printf("\n");
+			printf("====================================================================\n");
+		}
+		printf("===================== DOC GIA CAN LUU Y : ========================= \n");
+		printf(" -> Chi duoc phep muon sach toi da 7 ngay.\n");
+		printf(" -> Neu tre han thi phat 5000VND/1 ngay/1 sach.\n");
+		printf(" -> Neu mat sach thi phai boi thuong 200 phan tram gia tri cuon sach do.\n");
+		printf(" Mong doc gia thuc hien nghiem tuc.\n");
+		printf("===================================================================\n");
 	}
-	printf("===================== DOC GIA CAN LUU Y : ================== \n");
-	printf(" -> Chi duoc phep muon sach toi da 7 ngay.\n");
-	printf(" -> Neu tre han thi phat 5000VND/1 ngay/1 sach.\n");
-	printf(" -> Neu mat sach thi phai boi thuong 200 phan tram gia tri cuon sach do.\n");
-	printf(" Mong doc gia thuc hien nghiem tuc.\n");
-	printf("===================================================================\n");
 	_getch();
 }
 /* Starting ReturningCardInput function
@@ -120,23 +197,60 @@ Input : none
 Output: returning card created
 */
 void ReturningCardInput() {
-	system("cls");
 	while (true)
 	{
+		system("cls");
 		if (returnedcard > Max) printf("Khong du bo nho de tao phieu tra sach ! Vui long xoa bot va thu lai !");
 		else 
 			while (returnedcard<Max)
 			{
 				fflush(stdin); // clear caches
 				printf("=============== NHAP THONG TIN DOC GIA TRA SACH ============\n ");
-				printf("     -> Nhap ma doc gia can tra sach : ");
-				gets_s(ReturningID[returnedcard]);
+				do
+				{
+					int flag = 0;
+					printf("     -> Nhap ma doc gia can tra sach : ");
+					gets_s(ReturningID[returnedcard]);
+					for (int i = 0; i < borrowedcard; i++)
+					{
+						if (strcmp(ReturningID[returnedcard],BorrowingID[i]) == 0)
+						{
+							flag = 1; // already in db
+							break;
+						}
+					}
+					if (flag == 1)
+					{
+						break;
+					}
+					else
+					{
+						printf("  -> Doc gia nay chua muon sach nen khong co trong du lieu cua thu vien !\n");
+						Sleep(1000);
+						system("cls");
+						continue;
+					}
+				} while (true);
+
 				printf("     -> Nhap ngay tra sach thuc te : ");
 				scanf_s("%d", &returningDay[returnedcard]);
 				printf("     -> Nhap thang tra sach thuc te : ");
 				scanf_s("%d", &returningMonth[returnedcard]);
 				printf("     -> Nhap nam tra sach thuc te : ");
 				scanf_s("%d", &returningYear[returnedcard]);
+				do
+				{
+					int flag = 0;
+					printf("     -> Nhap so sach can tra : ");
+					scanf_s("%d", &returnInATime[returnedcard]);
+					
+					for (int j = 0; j < returnInATime[returnedcard]; j++)
+					{
+						printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
+						getchar();
+						gets_s(ReturningISBN[j]);
+					}
+				} while (true);
 				returnedcard++; break;
 			}
 		break;
@@ -149,35 +263,39 @@ Output : print ReturningCard info
 */
 void ReturningCardListing() {
 	system("cls");
-	int flag = 0;
-	for (int i = 0; i < borrowedcard; i++)
+	if (returnedcard == 0) printf("  -> Hien tai khong co doc gia nao tra sach ! \n");
+	else
 	{
-		if (strcmp(BorrowingID[i], ReturningID[i]) == 0)
+		int flag = 0;
+		for (int i = 0; i < borrowedcard; i++)
 		{
-			printf("================== THONG TIN PHIEU TRA SACH =================\n");
-			printf("\n");
-			printf("   -> Ma so doc gia : ");
-			puts(BorrowingID[i]);
-			printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
-			printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
-			printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
-			printf("   -> Danh sach cac sach da muon : \n");
-			for (int j = 0; j < bookInATime[i]; j++)
+			if (strcmp(BorrowingID[i], ReturningID[i]) == 0)
 			{
-				printf("     -> ISBN Cuon sach thu %d : ", j + 1);
-				puts(BorrowingISBN[j]);
-				printf("     -> Ten cuon sach thu %d : ", j + 1);
-				for (int k = 0; k < bookcounter; k++)
-					if (strcmp(BorrowingISBN[j], ISBN[k]) == 0)
-						puts(BookName[k]);
-						
-			}
-				printf("   -> So tien phat phai tra : %d VND \n",PenaltyFee(returningDay[i], returningMonth[i], returningYear[i], estimatedDay[i], estimatedMonth[i], estimatedYear[i]));
+				printf("================== THONG TIN PHIEU TRA SACH =================\n");
+				printf("\n");
+				printf("   -> Ma so doc gia : ");
+				puts(BorrowingID[i]);
+				printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
+				printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
+				printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
+				printf("   -> Danh sach cac sach da muon : \n");
+				for (int j = 0; j < bookInATime[i]; j++)
+				{
+					printf("     -> ISBN Cuon sach thu %d : ", j + 1);
+					puts(BorrowingISBN[j]);
+					printf("     -> Ten cuon sach thu %d : ", j + 1);
+					for (int k = 0; k < bookcounter; k++)
+						if (strcmp(BorrowingISBN[j], ISBN[k]) == 0)
+							puts(BookName[k]);
+
+				}
+				printf("   -> So tien phat phai tra : %d VND \n", PenaltyFee(returningDay[i], returningMonth[i], returningYear[i], estimatedDay[i], estimatedMonth[i], estimatedYear[i]));
 				printf("=========================================================\n");
 				flag = 1; break;
+			}
 		}
+		if (flag = 0) printf("Khong co doc gia tra sach ! ");
 	}
-	if (flag = 0) printf("Khong co doc gia tra sach ! ");
 	_getch();
 }
 /* Starting PenaltyFee function
@@ -452,6 +570,7 @@ Output : library card submenu
 void CardCreatingMenu() {
 	while (true)
 	{
+		system("cls");
 		printf("================ MENU PHIEU THU VIEN ==============\n");
 		printf("   -> 1. Lap phieu muon sach \n");
 		printf("   -> 2. Lap phieu tra sach \n");
@@ -462,6 +581,7 @@ void CardCreatingMenu() {
 		int choice;
 		printf("   -> Nhap vao lua chon : ");
 		scanf_s("%d", &choice);
+		getchar();
 		if (choice == 5) break;
 		else if (choice == 1)
 		{
@@ -483,6 +603,10 @@ void CardCreatingMenu() {
 		{
 			ReturningCardListing(); break;
 		}
-		else printf("Lua chon khong hop le ! Vui long thu lai !");
+		else
+		{
+			printf("Lua chon khong hop le ! Vui long thu lai !\n");
+			Sleep(500);
+		}
 	}
 }

@@ -137,7 +137,7 @@ void StudentCreating() {
 	while (true)
 	{
 		int choice;
-		printf("===================== Menu Tao Doc Gia ========================\n");
+		printf("===================== MENU TAO DOC GIA ========================\n");
 		printf("                 -> 1. Tao doc gia moi                         \n");
 		printf("                 -> 2. Thoat                                   \n");
 		printf("===============================================================\n");
@@ -148,7 +148,7 @@ void StudentCreating() {
 			if (studentcounter > Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
 			else
 			{
-				printf(" ========== Thong Tin Doc Gia Thu %d =============\n", studentcounter + 1);
+				printf(" ============== THONG TIN DOC GIA THU  %d =============\n", studentcounter + 1);
 				fflush(stdin);
 				getchar();// Clear the caches
 							   // Input the informations
@@ -173,7 +173,7 @@ void StudentCreating() {
 				DayExpired();
 				studentcounter++;
 				Sleep(1000);
-				printf("Tao hoc sinh moi thanh cong !");
+				printf("Tao doc gia moi thanh cong !");
 				Sleep(500);
 				break;
 			}
@@ -415,10 +415,15 @@ void SearchByID(char id[25]) {
 			printf("   -> Thoi gian lap the thu vien : %d/%d/%d\n", DayCre[i], MonthCre[i], YearCre[i]);
 			printf("   -> Ngay het han : %d/%d/%d\n", DayEx[i], MonthEx[i], YearEx[i]);
 			printf("====================================================\n");
-			flag = 1;
+			flag++;
 		}
 	}
-	if (flag != 1) printf("Khong tim thay ket qua !");
+	if (flag == 0) printf("Khong tim thay ket qua !");
+	else
+	{
+		printf("\n");
+		printf("   - > Tong cong co %d hoc sinh duoc tim thay.\n", flag);
+	}
 	_getch();
 }
 /*Starting SearchByName function 
@@ -448,9 +453,14 @@ void SearchByName(char name[25]) {
 			printf("   -> Thoi gian lap the thu vien : %d/%d/%d\n", DayCre[i], MonthCre[i], YearCre[i]);
 			printf("   -> Ngay het han : %d/%d/%d\n", DayEx[i], MonthEx[i], YearEx[i]);
 			printf("====================================================\n");
-			flag = 1;
+			flag++;
 		}
 	}
-	if (flag != 1) printf("Khong tim thay ket qua !");
+	if (flag == 0) printf("Khong tim thay ket qua !");
+	else
+	{
+		printf("\n");
+		printf("   - > Tong cong co %d hoc sinh duoc tim thay.\n", flag);
+	}
 	_getch();
 }
