@@ -19,17 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MainActivity.h" />
+    <ClInclude Include="BookComponents.h" />
     <ClInclude Include="BookManagement.h" />
     <ClInclude Include="Introduction.h" />
     <ClInclude Include="LibraryCard.h" />
+    <ClInclude Include="LibraryComponents.h" />
     <ClInclude Include="Statistics.h" />
+    <ClInclude Include="StudentComponents.h" />
     <ClInclude Include="StudentManagement.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActivityMain.cpp" />
+    <ClCompile Include="MainActivity.cpp" />
+    <ClCompile Include="BookComponents.cpp" />
     <ClCompile Include="BookManagement.cpp" />
     <ClCompile Include="Introduction.cpp" />
     <ClCompile Include="LibraryCard.cpp" />
+    <ClCompile Include="LibraryComponents.cpp" />
+    <ClCompile Include="Statistics.cpp" />
+    <ClCompile Include="StudentComponents.cpp" />
     <ClCompile Include="StudentManagement.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
