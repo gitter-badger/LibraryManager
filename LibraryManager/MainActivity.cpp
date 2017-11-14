@@ -1,7 +1,7 @@
 #include "MainActivity.h"
 
 void main() {
-	int menuchoice, smchoice, bmchoice;
+	int menuchoice, smchoice, bmchoice, statschoice;
 	// Initialising components as waiting for avoiding interupt
 	InitializingComponents();
 	system("cls");
@@ -155,11 +155,39 @@ void main() {
 			fflush(stdin);
 			CardCreatingMenu();
 			break;
-		}
+		} break;
+		case 4: // statistics menu 
+		{
+			while (true)
+			{
+				statschoice = StatisticsMenu();
+				if (statschoice == 0) break;
+				switch (statschoice)
+				{
+				case 1: 
+				{
+					system("cls");
+					printf("\n\n");
+					printf("============ THONG KE SO SACH TRONG THU VIEN ==============\n");
+					printf("  -> Tong so sach : %d\n", bookcounter);
+					_getch();
+					break;
+				}
+				case 2: 
+				{
+					system("cls");
+					BookStatsByGenre();
+					Sleep(500);
+				}
+				default:
+					break;
+				}
+			}
+		} break;
 		case 0 :
 		{
 			return;
-		}
+		} break;
 		case 5: // about author
 		{
 			system("cls");

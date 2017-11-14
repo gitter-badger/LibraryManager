@@ -39,19 +39,27 @@ Type : void
 Input : none
 Output : listing books by genre
 */
-void BookStatByGenre() {
+void BookStatsByGenre() {
 	printf("================== THONG KE SACH THEO THE LOAI ==================\n");
 	printf("\n");
 	for (int i = 0; i < bookcounter; i++)
 	{
 		printf("  -> The loai : ");
 		puts(Genre[i]);
-		for (int j = 0; j < studentcounter; j++)
+		for (int j = 0; j < bookcounter; j++)
 		{
-			if (strcmp(Genre[i], Genre[j]) == 0) puts(BookName[j]);
+			if (strcmp(Genre[i], Genre[j]) == 0)
+			{
+				printf("  -> Ma sach  : "); 
+				puts(ISBN[j]);
+				printf("  -> Ten sach : ");
+				puts(BookName[j]);
+			}
+			printf("\n");
 		}
 		printf("==============================================================\n");
 	}
+	_getch();
 }
 /* Starting BookInUse function
 Type : void

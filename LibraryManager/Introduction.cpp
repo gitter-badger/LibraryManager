@@ -163,6 +163,7 @@ int StatisticsMenu() {
 	printf("\t\t ||            4. Thong Ke So Luong Doc Gia Theo Gioi Tinh        ||\n");
 	printf("\t\t ||            5. Thong Ke So Sach Dang Duoc Muon                 ||\n");
 	printf("\t\t ||            6. Thong Ke Danh Sach Doc Gia Bi Tre Han           ||\n");
+	printf("\t\t ||            0. Quay lai menu chinh                             ||\n");
 	printf("\t\t ||                                                               ||\n");
 	printf("\t\t ===================================================================\n");
 	printf("                   Vui Long Chon Phim Chuc Nang :  ");

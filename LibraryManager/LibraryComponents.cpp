@@ -5,6 +5,7 @@ estimatedDay[Max], estimatedMonth[Max], estimatedYear[Max],
 returningDay[Max], returningMonth[Max], returningYear[Max];
 int bookInATime[Max]; // Books amount stored books which borrowed by a student during a time
 int returnInATime[Max]; //Books amount stored book which returned by a student
+int remainingBook[Max];
 int borrowedbook = 0; // Counting books which borrowed by students
 int borrowedcard = 0;// count borrowed card
 int returnedcard = 0; // count returned card

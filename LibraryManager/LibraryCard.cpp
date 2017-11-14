@@ -53,6 +53,7 @@ void BorrowingCardInput() {
 				printf("\n");
 				printf("\t  -> Nhap so luong sach doc gia can muon : ");
 				scanf_s("%d", &bookInATime[borrowedcard]);
+				remainingBook[borrowedcard] = bookInATime[borrowedcard];
 				if (bookInATime[borrowedcard] > bookcounter)
 				{
 					printf("  -> So sach muon vuot qua du lieu thu vien ! Vui long thu lai !\n");
@@ -199,6 +200,7 @@ Output: returning card created
 void ReturningCardInput() {
 	while (true)
 	{
+		int brlocation;
 		system("cls");
 		if (returnedcard > Max) printf("Khong du bo nho de tao phieu tra sach ! Vui long xoa bot va thu lai !");
 		else 
@@ -216,6 +218,7 @@ void ReturningCardInput() {
 						if (strcmp(ReturningID[returnedcard],BorrowingID[i]) == 0)
 						{
 							flag = 1; // already in db
+							brlocation = i;  // point the borrower location
 							break;
 						}
 					}
@@ -240,15 +243,34 @@ void ReturningCardInput() {
 				scanf_s("%d", &returningYear[returnedcard]);
 				do
 				{
-					int flag = 0;
+					printf("\n");
+					//int flag = 0;
 					printf("     -> Nhap so sach can tra : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					
-					for (int j = 0; j < returnInATime[returnedcard]; j++)
+					remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
+					if (remainingBook[returnedcard]<0)
+						continue;
+					else if (remainingBook[returnedcard]==0) // return all books in a time
 					{
-						printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
-						getchar();
-						gets_s(ReturningISBN[j]);
+						for (int j = 0; j < returnInATime[returnedcard]; j++)
+						{
+							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
+							getchar();
+							gets_s(ReturningISBN[j]);
+						}
+						printf("  -> Tra sach thanh cong ! \n");
+						Sleep(1000);
+						borrowedcard--;
+						break;
+					}
+					else
+					{
+						for (int j = 0; j < returnInATime[returnedcard]; j++)
+						{
+							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
+							getchar();
+							gets_s(ReturningISBN[j]);
+						}
 					}
 				} while (true);
 				returnedcard++; break;
@@ -267,7 +289,7 @@ void ReturningCardListing() {
 	else
 	{
 		int flag = 0;
-		for (int i = 0; i < borrowedcard; i++)
+		for (int i = 0; i < returnedcard; i++)
 		{
 			if (strcmp(BorrowingID[i], ReturningID[i]) == 0)
 			{
@@ -278,6 +300,7 @@ void ReturningCardListing() {
 				printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
 				printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
 				printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
+				printf("   -> Tong so cuon sach da muon : %d", bookInATime[i]);
 				printf("   -> Danh sach cac sach da muon : \n");
 				for (int j = 0; j < bookInATime[i]; j++)
 				{

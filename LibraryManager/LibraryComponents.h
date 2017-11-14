@@ -6,6 +6,7 @@ extern int BorrowingDay[Max], BorrowingMonth[Max], BorrowingYear[Max],
 estimatedDay[Max], estimatedMonth[Max], estimatedYear[Max],
 returningDay[Max], returningMonth[Max], returningYear[Max];
 extern int bookInATime[Max]; // Books amount stored books which borrowed by a student during a time
+extern int remainingBook[Max]; // books amount stored books which remaining to return
 extern int returnInATime[Max]; //Books amount stored book which returned by a student
 extern int borrowedbook; // Counting books which borrowed by students
 extern int borrowedcard;// count borrowed card

@@ -31,7 +31,7 @@ Output : informations stored for max 1 books
 			printf("    -> The loai cuon sach thu %d : ", bookcounter + 1);
 			gets_s(Genre[bookcounter]);
 			printf("    -> Gia thanh cuon sach thu %d : ", bookcounter + 1);
-			gets_s(Cost[bookcounter]);
+			scanf_s("%d", &Cost[bookcounter]);
 			printf("    -> So luong cuon nhap ve : ");
 			scanf_s("%d", &Amount[bookcounter]);
 			bookcounter++; break;
@@ -74,7 +74,7 @@ Output : book informations
 				 printf("    -> Nhap the loai : ");
 				 gets_s(Genre[bookcounter]);
 				 printf("    -> Nhap gia : ");
-				 gets_s(Cost[bookcounter]);
+				 scanf_s("%d", &Cost[bookcounter]);
 				 printf("    -> Nhap vao so luong sach : ");
 				 scanf_s("%d", &Amount[bookcounter]);
 				 bookcounter++; 
@@ -112,8 +112,7 @@ Output : listed books
 		puts(YearProducing[i]);
 		printf("   -> The loai : ");
 		puts(Genre[i]);
-		printf("   -> Gia thanh : ");
-		puts(Cost[i]);
+		printf("   -> Gia thanh : %d VND \n", Cost[i]);
 		printf("   -> So luong co san : %d\n", Amount[i]);
 	}
 	_getch();
@@ -203,10 +202,10 @@ Output: listed books available
 		} break;
 		case 7: {
 			fflush(stdin);
-			char NewCost[25];
+			int newcost;
 			printf("Nhap vao gia moi : ");
-			gets_s(NewCost);
-			strcpy_s(Cost[number - 1], NewCost);
+			scanf_s("%d", &newcost);
+			Cost[number - 1] = newcost;
 			Sleep(1000);
 			printf("Chinh sua thanh cong !");
 			Sleep(500);
@@ -282,8 +281,7 @@ Output: Book informations
 	puts(YearProducing[number - 1]);
 	printf("   -> The loai : ");
 	puts(Genre[number - 1]);
-	printf("   -> Gia thanh : ");
-	puts(Cost[number - 1]);
+	printf("   -> Gia thanh : %d VND \n", Cost[number-1]);
 	printf("   -> So luong co san : %d\n", Amount[number - 1]);
 	_getch();
 }
@@ -301,7 +299,7 @@ Output: Listed book available
 			strcpy_s(Producer[i], Producer[i + 1]);
 			strcpy_s(YearProducing[i], YearProducing[i + 1]);
 			strcpy_s(Genre[i], Genre[i + 1]);
-			strcpy_s(Cost[i], Cost[i + 1]);
+			Cost[i] = Cost[i + 1];
 			Amount[i] = Amount[i + 1];
 		}
 		bookcounter--;
@@ -341,8 +339,7 @@ Output : Return info if it matched
 			puts(YearProducing[i]);
 			printf("    -> The loai : ");
 			puts(Genre[i]);
-			printf("    -> Gia(VND) : ");
-			puts(Cost[i]);
+			printf("    -> Gia(VND) : %d\n", Cost[i]);
 			printf("==========================================\n");
 			flag++;
 		}	
@@ -377,8 +374,7 @@ Output : Return info if it matched
 			puts(YearProducing[i]);
 			printf("    -> The loai : ");
 			puts(Genre[i]);
-			printf("    -> Gia(VND) : ");
-			puts(Cost[i]);
+			printf("    -> Gia(VND) : %d\n", Cost[i]);
 			printf("==========================================\n");
 			flag++;
 		}
