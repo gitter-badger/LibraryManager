@@ -2,6 +2,7 @@
 #include "LibraryCard.h"
 #include <stdio.h>
 #include <conio.h>
+#include "Statistics.h"
 #include "BookComponents.h"
 #include "StudentComponents.h"
 /*Starting BorrowingCardInput function
@@ -53,6 +54,8 @@ void BorrowingCardInput() {
 				printf("\n");
 				printf("\t  -> Nhap so luong sach doc gia can muon : ");
 				scanf_s("%d", &bookInATime[borrowedcard]);
+				readybook -= bookInATime[borrowedcard];
+				borrowedbook += bookInATime[borrowedcard];
 				remainingBook[borrowedcard] = bookInATime[borrowedcard];
 				if (bookInATime[borrowedcard] > bookcounter)
 				{
@@ -247,6 +250,7 @@ void ReturningCardInput() {
 					//int flag = 0;
 					printf("     -> Nhap so sach can tra : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
+					readybook += returnInATime[returnedcard];
 					remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 					if (remainingBook[returnedcard]<0)
 						continue;
@@ -599,13 +603,13 @@ void CardCreatingMenu() {
 		printf("   -> 2. Lap phieu tra sach \n");
 		printf("   -> 3. Xem danh sach phieu muon \n");
 		printf("   -> 4. Xem danh sach phieu tra \n");
-		printf("   -> 5. Thoat                \n");
+		printf("   -> 0. Thoat                \n");
 		printf("===================================================\n");
 		int choice;
 		printf("   -> Nhap vao lua chon : ");
 		scanf_s("%d", &choice);
 		getchar();
-		if (choice == 5) break;
+		if (choice == 0) break;
 		else if (choice == 1)
 		{
 			BorrowingCardInput();

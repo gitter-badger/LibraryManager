@@ -169,15 +169,41 @@ void main() {
 					system("cls");
 					printf("\n\n");
 					printf("============ THONG KE SO SACH TRONG THU VIEN ==============\n");
-					printf("  -> Tong so sach : %d\n", bookcounter);
-					_getch();
+					BookRemaining();
 					break;
 				}
 				case 2: 
 				{
 					system("cls");
 					BookStatsByGenre();
-					Sleep(500);
+					break;
+				}
+				case 3:
+				{
+					system("cls");
+					printf("=================== THONG KE SO LUONG DOC GIA ===================\n");
+					printf("\n");
+					printf("  -> Tong so doc gia trong thu vien la : %d", StudentStatistics());
+					_getch();
+					break;
+				}
+				case 4 :
+				{
+					system("cls");
+					StatsBasedSex();
+					break;
+				}
+				case 5: 
+				{
+					system("cls");
+					TotalBookInUse();
+					break;
+				}
+				case 6:
+				{
+					system("cls");
+					LateStats();
+					break;
 				}
 				default:
 					break;
@@ -195,6 +221,10 @@ void main() {
 			break;
 		} break;
 		default:
+		{
+			printf(" -> Lua chon khong hop le !");
+			Sleep(1000);
+		}
 			break;
 		}
 	}

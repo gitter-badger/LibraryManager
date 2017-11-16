@@ -1,4 +1,5 @@
 #include "Statistics.h"
+#include "BookComponents.h"
 /* Starting StudentStatistics function
 Type : int
 Input : none
@@ -22,17 +23,20 @@ void StatsBasedSex() {
 		else if (strcmp("Nu", Sex[i]) == 0) totalfemale++;
 	}
 	printf("============== THONG KE DOC GIA THEO GIOI TINH ===============\n");
-	printf("Co %d so luong cac ban nam trong thu vien \n", totalmale);
-	printf("Co %d so luong cac ban nu trong thu vien \n", totalfemale);
+	printf("\n");
+	printf("Co %d doc gia la nam trong thu vien \n", totalmale);
+	printf("Co %d doc gia la nu trong thu vien \n", totalfemale);
 	_getch();
 }
 /* Starting BookStatistics fucntion
 Type : void
 Input : none
-Output : return total book in db
+Output : return remaining book in db
 */
-int BookStatistics() {
-	return bookcounter;
+void BookRemaining() {
+	printf(" -> Tong so sach nhap ve thu vien la : %d\n\n", TotalBook);
+	printf(" -> Tong so sach san sang cho muon : %d\n", readybook);
+	_getch();
 }
 /* Starting BookStatsByGenre function
 Type : void
@@ -42,23 +46,21 @@ Output : listing books by genre
 void BookStatsByGenre() {
 	printf("================== THONG KE SACH THEO THE LOAI ==================\n");
 	printf("\n");
+	int dem;
 	for (int i = 0; i < bookcounter; i++)
 	{
-		printf("  -> The loai : ");
-		puts(Genre[i]);
+		dem = 0;
 		for (int j = 0; j < bookcounter; j++)
 		{
 			if (strcmp(Genre[i], Genre[j]) == 0)
 			{
-				printf("  -> Ma sach  : "); 
-				puts(ISBN[j]);
-				printf("  -> Ten sach : ");
-				puts(BookName[j]);
+				if (i <= j) dem += Amount[j];
+				else break;
 			}
-			printf("\n");
 		}
-		printf("==============================================================\n");
+		if (dem != 0) printf(" -> The loai %s co so luong sach la : %d\n", Genre[i], dem);
 	}
+		printf("=================================================================\n");
 	_getch();
 }
 /* Starting BookInUse function

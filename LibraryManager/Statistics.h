@@ -9,7 +9,7 @@
 #include "StudentComponents.h"
 int StudentStatistics();    // Calculating and statisting students in library's database
 void StatsBasedSex();       // Calculating and statisting students based sex type
-int BookStatistics(); // return total books in db
+void BookRemaining(); // return total books in db
 void BookStatsByGenre();  // stats by book's genre
 void TotalBookInUse();  // stats books in-use, not available for lending
 void LateStats(); // stats students who are in out of time

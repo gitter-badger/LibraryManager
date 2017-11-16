@@ -6,7 +6,7 @@ Type : void
 Input : none
 Output: About author
 */
-void Introduction() {
+ void Introduction() {
 	system("cls");
 	printf("\n\n\n");
 	printf("\t  =================================================================================================\n");
@@ -31,7 +31,7 @@ Type: void
 Input : none
 Output : waiting system and prompting user for avoiding interrupts
 */
-void InitializingComponents() {
+ void InitializingComponents() {
 	printf("\n");
 	printf("\t\t================= CHAO MUNG BAN DEN VOI QUAN LI THU VIEN =================\n");
 	printf("\n");
@@ -151,7 +151,7 @@ Type : int
 Input: none
 Output :user's input
 */
-int StatisticsMenu() {
+ int StatisticsMenu() {
 	system("cls");
 	int choice;
 	printf("\t\t ========================= THONG KE CO BAN =========================\n");

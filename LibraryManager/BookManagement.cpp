@@ -8,7 +8,7 @@ Output: Info
 Input: informations on arrays
 Output : informations stored for max 1 books
 */
- void BookDeclaration() {
+void BookDeclaration() {
 	while (true)
 	{
 		if (bookcounter > Max) printf("Khong du bo nho de them sach !");
@@ -34,6 +34,8 @@ Output : informations stored for max 1 books
 			scanf_s("%d", &Cost[bookcounter]);
 			printf("    -> So luong cuon nhap ve : ");
 			scanf_s("%d", &Amount[bookcounter]);
+			TotalBook += Amount[bookcounter];
+			readybook += Amount[bookcounter];
 			bookcounter++; break;
 		}
 		if (bookcounter >= 1) break; //Declaring max 3 books
@@ -43,7 +45,7 @@ Output : informations stored for max 1 books
 Input : none
 Output : book informations
 */
- void BookCreating() {
+void BookCreating() {
 	 while (true)
 	 {
 		 int choice;
@@ -75,8 +77,10 @@ Output : book informations
 				 gets_s(Genre[bookcounter]);
 				 printf("    -> Nhap gia : ");
 				 scanf_s("%d", &Cost[bookcounter]);
-				 printf("    -> Nhap vao so luong sach : ");
+				 printf("    -> Nhap vao so luong sach nhap ve : ");
 				 scanf_s("%d", &Amount[bookcounter]);
+				 TotalBook += Amount[bookcounter];
+				 readybook += Amount[bookcounter];
 				 bookcounter++; 
 				 Sleep(1000);
 				 printf("Tao sach moi thanh cong !\n");
@@ -121,7 +125,7 @@ Output : listed books
 Input : book position
 Output: listed books available
 */
- void BookEditing(int number){
+void BookEditing(int number){
 	if (number > 0 && number <= bookcounter)
 	{
 		int choice;
@@ -210,6 +214,16 @@ Output: listed books available
 			printf("Chinh sua thanh cong !");
 			Sleep(500);
 		} break;
+		case 8:
+		{
+			int sl;
+			TotalBook -= Amount[number - 1];
+			printf(" -> Nhap vao so luong moi : ");
+			scanf_s("%d", &sl);
+			Amount[number - 1] = sl;
+			TotalBook += Amount[number - 1];
+			break;
+		}
 		default: 
 		{
 			printf(" Lua chon khong hop le ! Vui long thu lai ..");
@@ -230,7 +244,7 @@ Output: listed books available
 Input : choice
 Output : 
 */
-void EBSubMenu(int number) {
+ void EBSubMenu(int number) {
 	while (true)
 	{
 		if (number > 0 && number <= bookcounter)
@@ -267,7 +281,7 @@ void EBSubMenu(int number) {
 Input: book position
 Output: Book informations
 */
- void SeeBookChanges(int number) {
+void SeeBookChanges(int number) {
 	printf("============ THONG TIN CUON SACH THU %d SAU KHI CHINH SUA ==============\n", number);
 	printf("   -> Ma sach : ");
 	puts(ISBN[number - 1]);
@@ -300,6 +314,7 @@ Output: Listed book available
 			strcpy_s(YearProducing[i], YearProducing[i + 1]);
 			strcpy_s(Genre[i], Genre[i + 1]);
 			Cost[i] = Cost[i + 1];
+			TotalBook -= Amount[i];
 			Amount[i] = Amount[i + 1];
 		}
 		bookcounter--;
