@@ -338,9 +338,9 @@ Output : Return info if it matched
 */
  void SearchByBookName(char name[30]) {
 	int flag = 0;
+	printf("============ KET QUA TIM KIEM ===========\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(name, BookName[i]) == 0) {
-			printf("============ KET QUA TIM KIEM ===========\n");
 			printf("\n");
 			printf("    -> Ma sach : ");
 			puts(ISBN[i]);
@@ -373,9 +373,9 @@ Output : Return info if it matched
 */
  void SearchByISBN(char isbn[30]) {
 	int flag = 0;
+	printf("============ KET QUA TIM KIEM ===========\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(isbn, ISBN[i]) == 0) {
-			printf("============ KET QUA TIM KIEM ===========\n");
 			printf("\n");
 			printf("    -> Ma sach : ");
 			puts(ISBN[i]);

@@ -1,6 +1,5 @@
 #include "MainActivity.h"
-
-void main() {
+void MainActivity() {
 	int menuchoice, smchoice, bmchoice, statschoice;
 	// Initialising components as waiting for avoiding interupt
 	InitializingComponents();

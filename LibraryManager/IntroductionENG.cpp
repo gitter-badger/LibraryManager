@@ -150,7 +150,7 @@ Type : int
 Input: none
 Output :user's input
 */
-int StatisticsMenu() {
+int StatisticsMenuENG() {
 	system("cls");
 	int choice;
 	printf("\t\t ========================= STATISTICS ==== =========================\n");

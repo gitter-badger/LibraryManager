@@ -30,7 +30,7 @@ void BookDeclarationENG() {
 			gets_s(YearProducing[bookcounter]);
 			printf("    -> Genre of book %d : ", bookcounter + 1);
 			gets_s(Genre[bookcounter]);
-			printf("    -> Price of book %d : ", bookcounter + 1);
+			printf("    -> Price of book(VND) %d : ", bookcounter + 1);
 			scanf_s("%d", &Cost[bookcounter]);
 			printf("    -> Delivery amount of book  : ");
 			scanf_s("%d", &Amount[bookcounter]);
@@ -75,7 +75,7 @@ void BookCreatingENG() {
 				gets_s(YearProducing[bookcounter]);
 				printf("    -> Input genre : ");
 				gets_s(Genre[bookcounter]);
-				printf("    -> Input price : ");
+				printf("    -> Input price (VND) : ");
 				scanf_s("%d", &Cost[bookcounter]);
 				printf("    -> Input delivery amount : ");
 				scanf_s("%d", &Amount[bookcounter]);
@@ -254,10 +254,10 @@ void EBSubMenuENG(int number) {
 		{
 			system("cls");
 			int choice;
-			printf("==================== BOOK EDITING MENU ====================\n");
+			printf("==================== BOOK EDITING MENU ======================\n");
 			printf("\n");
 			printf("     -> 1. Continue to edit and update infomations of book %d\n", number);
-			printf("     -> 2. See the local changes of book %d                 \n", number);
+			printf("     -> 2. See the local changes of book %d                  \n", number);
 			printf("     -> 3. Go back to menu                                   \n");
 			printf("=============================================================\n");
 			printf("  -> Input your choice : ");
@@ -345,9 +345,9 @@ Output : Return info if it matched
 */
  void SearchByBookNameENG(char name[30]) {
 	int flag = 0;
+	printf("================== SEARCHING RESULT ==================\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(name, BookName[i]) == 0) {
-			printf("================== SEARCHING RESULT ==================\n");
 			printf("\n");
 			printf("    -> ISBN : ");
 			puts(ISBN[i]);
@@ -380,9 +380,9 @@ Output : Return info if it matched
 */
 void SearchByISBNENG(char isbn[30]) {
 	int flag = 0;
+	printf("===================== SEARCHING RESULTS =====================\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(isbn, ISBN[i]) == 0) {
-			printf("===================== KET QUA TIM KIEM =====================\n");
 			printf("\n");
 			printf("    -> ISBN : ");
 			puts(ISBN[i]);
