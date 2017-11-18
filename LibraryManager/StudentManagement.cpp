@@ -355,25 +355,34 @@ Output : Deleted student, listing student available*/
 	int flag = 0;
 	if (number > 0 && number <= studentcounter)
 	{
-		for (int i = number - 1; i < studentcounter - 1; i++) 
+		char answer;
+		fflush(stdin);
+		getchar();
+		printf("  -> Ban co chac chan muon xoa hay khong ? (Y) de xoa, (N) de huy bo. : ");
+		answer = getchar();
+		if (answer == 'y' || answer == 'Y')
 		{
-			strcpy_s(LibraryID[i], LibraryID[i + 1]);
-			strcpy_s(Name[i], Name[i + 1]);
-			strcpy_s(ID[i], ID[i + 1]);
-			strcpy_s(Birth[i], Birth[i + 1]);
-			strcpy_s(Sex[i], Sex[i + 1]);
-			strcpy_s(Email[i], Email[i + 1]);
-			strcpy_s(Address[i], Address[i + 1]);
-			//Timing library card
-			DayCre[i] = DayCre[i + 1];
-			MonthCre[i] = MonthCre[i + 1];
-			YearCre[i] = YearCre[i + 1];
-			// Timing expired card
-			DayEx[i] = DayEx[i + 1];
-			MonthEx[i] = MonthEx[i + 1];
-			YearEx[i] = YearEx[i + 1];
+			for (int i = number - 1; i < studentcounter - 1; i++)
+			{
+				strcpy_s(LibraryID[i], LibraryID[i + 1]);
+				strcpy_s(Name[i], Name[i + 1]);
+				strcpy_s(ID[i], ID[i + 1]);
+				strcpy_s(Birth[i], Birth[i + 1]);
+				strcpy_s(Sex[i], Sex[i + 1]);
+				strcpy_s(Email[i], Email[i + 1]);
+				strcpy_s(Address[i], Address[i + 1]);
+				//Timing library card
+				DayCre[i] = DayCre[i + 1];
+				MonthCre[i] = MonthCre[i + 1];
+				YearCre[i] = YearCre[i + 1];
+				// Timing expired card
+				DayEx[i] = DayEx[i + 1];
+				MonthEx[i] = MonthEx[i + 1];
+				YearEx[i] = YearEx[i + 1];
+			}
+			studentcounter--; flag = 1;
 		}
-		studentcounter--; flag = 1;
+		else if (answer == 'n' || answer == 'N') return;
 	}
 	if (flag == 1) {
 		printf("Xoa thanh cong !\n");
@@ -394,10 +403,10 @@ Output : Student info
 */
  void SearchByID(char id[25]) {
 	int flag = 0;
+	printf("================ KET QUA TIM KIEM ==================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(id, ID[i]) == 0) {
-			printf("================ KET QUA TIM KIEM ==================\n");
 			printf("   -> Ma doc gia : ");
 			puts(LibraryID[i]);
 			printf("   -> Ten doc gia : ");
@@ -432,10 +441,10 @@ Output : Student info if it matched
 */
  void SearchByName(char name[25]) {
 	int flag = 0;
+	printf("================ KET QUA TIM KIEM ==================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(name, Name[i]) == 0) {
-			printf("================ KET QUA TIM KIEM ==================\n");
 			printf("   -> Ma doc gia : ");
 			puts(LibraryID[i]);
 			printf("   -> Ten doc gia : ");

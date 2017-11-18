@@ -49,7 +49,7 @@ Output : waiting system and prompting user for avoiding interrupts
 	printf(". ");
 	Sleep(500);
 	printf(". \n");
-	printf("\t Luu y : De chuong trinh chay on dinh,\n\tban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
+	printf("\t Luu y : De chuong trinh chay on dinh,\n\t ban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
 	Sleep(2000);
 	printf("\t Ban da hieu roi chu. Bat dau nao. \n");
 	Sleep(2000);

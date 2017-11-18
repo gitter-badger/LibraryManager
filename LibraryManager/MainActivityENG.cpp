@@ -168,14 +168,14 @@ void MainActivityENG()
 				{
 					system("cls");
 					printf("\n\n");
-					printf("============ THONG KE SO SACH TRONG THU VIEN ==============\n");
-					BookRemaining();
+					printf("============ TOTAL BOOKS STATS ==============\n");
+					BookRemainingENG();
 					break;
 				}
 				case 2: 
 				{
 					system("cls");
-					BookStatsByGenre();
+					BookStatsByGenreENG();
 					break;
 				}
 				case 3:
@@ -217,12 +217,12 @@ void MainActivityENG()
 		case 5: // about author
 		{
 			system("cls");
-			Introduction();
+			IntroductionENG();
 			break;
 		} break;
 		default:
 		{
-			printf(" -> Lua chon khong hop le !");
+			printf(" -> Invalid option !");
 			Sleep(1000);
 		}
 			break;

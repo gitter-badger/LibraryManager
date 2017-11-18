@@ -192,18 +192,18 @@ Output : local changed
 		if (number> 0 && number <= studentcounter)
 		{
 			int choice;
-			printf("================ MENU CHINH SUA DOC GIA ===============\n");
-			printf("  -> 1. Chinh sua Ma thu vien                          \n");
-			printf("  -> 2. Chinh sua ten doc gia                          \n");
-			printf("  -> 3. Chinh sua CMND cua doc gia                     \n");
-			printf("  -> 4. Chinh sua ngay thang nam sinh cua doc gia      \n");
-			printf("  -> 5. Chinh sua gioi tinh                            \n");
-			printf("  -> 6. Chinh sua email                                \n");
-			printf("  -> 7. Chinh sua dia chi                              \n");
-			printf("  -> 8. Chinh sua thoi gian tao the thu vien           \n");
-			printf("  -> 0. Huy bo chinh sua                               \n");
+			printf("================ STUDENT EDITING MENU =================\n");
+			printf("  -> 1. Edit library ID                                \n");
+			printf("  -> 2. Edit student's name                            \n");
+			printf("  -> 3. Edit student ID                                \n");
+			printf("  -> 4. Edit birthday                                  \n");
+			printf("  -> 5. Edit sex                                       \n");
+			printf("  -> 6. Edit email                                     \n");
+			printf("  -> 7. Edit address                                   \n");
+			printf("  -> 8. Edit library card creating time                \n");
+			printf("  -> 0. Go back to menu                                \n");
 			printf("=======================================================\n");
-			printf("   Nhap lua chon cua ban : ");
+			printf("   -> Input your choice : ");
 			scanf_s("%d", &choice);
 			if (choice == 0) break;
 			switch (choice)
@@ -212,101 +212,103 @@ Output : local changed
 				system("cls");
 				fflush(stdin);
 				int dayedit, monthedit, yearedit;
-				printf("============ NOI DUNG CHINH SUA =============\n");
-				printf(" -> Nhap ngay muon sua : ");
+				printf("============ EDITING CONTENTS =============\n");
+				printf(" -> Input new day : ");
 				scanf_s("%d", &dayedit);
-				printf(" -> Nhap thang muon sua : ");
+				printf(" -> Input new month : ");
 				scanf_s("%d", &monthedit);
-				printf(" -> Nhap nam muon sua : ");
+				printf(" -> Input new year : ");
 				scanf_s("%d", &yearedit);
 				DayCre[number-1] = dayedit;
 				MonthCre[number-1] = monthedit;
 				YearCre[number-1] = yearedit;
 				DayEx[number-1] = dayedit;
 				MonthEx[number-1] = monthedit;
-				YearEx[number-1] = yearedit + 4;
-				
+				YearEx[number-1] = yearedit + 4;	
+				Sleep(1000);
+				printf("  -> Edited successfully !");
+				Sleep(500);
 			} break;
 			case 1: {
 				getchar();
 				fflush(stdin);
 				char LibIDNew[25];
-				printf("Nhap vao ma thu vien moi : ");
+				printf(" -> Input new Library ID : ");
 				gets_s(LibIDNew);
 				strcpy_s(LibraryID[number - 1], LibIDNew);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 2: {
 				getchar();
 				fflush(stdin);
 				char NewName[25];
-				printf("Nhap vao ten moi : ");
+				printf("  -> Input new name : ");
 				gets_s(NewName);
 				strcpy_s(Name[number - 1], NewName);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 3: {
 				getchar();
 				fflush(stdin);
 				char NewID[25];
-				printf("Nhap vao CMND moi : ");
+				printf("  -> Input new ID : ");
 				gets_s(NewID);
 				strcpy_s(ID[number - 1], NewID);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 4: {
 				getchar();
 				fflush(stdin);
 				char NewBirth[25];
-				printf("Nhap vao ngay thang nam sinh moi : ");
+				printf("  -> Input new birthday : ");
 				gets_s(NewBirth);
 				strcpy_s(Birth[number - 1], NewBirth);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 5: {
 				getchar();
 				fflush(stdin);
 				char NewSex[25];
-				printf("Nhap vao gioi tinh moi : ");
+				printf("  -> Input new sex : ");
 				gets_s(NewSex);
 				strcpy_s(Sex[number - 1], NewSex);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 6: {
 				getchar();
 				fflush(stdin);
 				char NewEmail[25];
-				printf("Nhap email moi : ");
+				printf("  -> Input new email : ");
 				gets_s(NewEmail);
 				strcpy_s(Email[number - 1], NewEmail);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			case 7: {
 				getchar();
 				fflush(stdin);
 				char NewAddress[50];
-				printf("Nhap dia chi moi : ");
+				printf("  -> Input new address : ");
 				gets_s(NewAddress);
 				strcpy_s(Address[number - 1], NewAddress);
 				Sleep(1000);
-				printf("Chinh sua thanh cong !");
+				printf("  -> Edited successfully !");
 				Sleep(500);
 			} break;
 			default:
 			{
-				printf("Chuc nang ban nhap khong hop le! Vui long kiem tra lai.");
+				printf("  -> The option you selected is invalid ! Please try again !");
 				Sleep(1000);
 				break;
 			}
@@ -315,7 +317,8 @@ Output : local changed
 		}
 		else
 		{
-			printf("Du lieu hoc sinh khong ton tai hoac khong trung khop ! Vui long thoat ra va chon lai..\n");
+			printf(" -> The informations of this student are not available !\n");
+			printf(" -> Please see students list in Student Listing menu, check correct position, and try again.\n");
 			_getch();
 			Sleep(1000);
 		}
@@ -355,36 +358,50 @@ Output : Deleted student, listing student available*/
 	int flag = 0;
 	if (number > 0 && number <= studentcounter)
 	{
-		for (int i = number - 1; i < studentcounter - 1; i++) 
+		char answer;
+		fflush(stdin);
+		getchar();
+		printf(" -> Confirm delete this student ? Type Y or y for Yes, N or n to Cancel : ");
+		answer = getchar();
+		if (answer == 'y' || answer == 'Y')
 		{
-			strcpy_s(LibraryID[i], LibraryID[i + 1]);
-			strcpy_s(Name[i], Name[i + 1]);
-			strcpy_s(ID[i], ID[i + 1]);
-			strcpy_s(Birth[i], Birth[i + 1]);
-			strcpy_s(Sex[i], Sex[i + 1]);
-			strcpy_s(Email[i], Email[i + 1]);
-			strcpy_s(Address[i], Address[i + 1]);
-			//Timing library card
-			DayCre[i] = DayCre[i + 1];
-			MonthCre[i] = MonthCre[i + 1];
-			YearCre[i] = YearCre[i + 1];
-			// Timing expired card
-			DayEx[i] = DayEx[i + 1];
-			MonthEx[i] = MonthEx[i + 1];
-			YearEx[i] = YearEx[i + 1];
+			for (int i = number - 1; i < studentcounter - 1; i++)
+			{
+				strcpy_s(LibraryID[i], LibraryID[i + 1]);
+				strcpy_s(Name[i], Name[i + 1]);
+				strcpy_s(ID[i], ID[i + 1]);
+				strcpy_s(Birth[i], Birth[i + 1]);
+				strcpy_s(Sex[i], Sex[i + 1]);
+				strcpy_s(Email[i], Email[i + 1]);
+				strcpy_s(Address[i], Address[i + 1]);
+				//Timing library card
+				DayCre[i] = DayCre[i + 1];
+				MonthCre[i] = MonthCre[i + 1];
+				YearCre[i] = YearCre[i + 1];
+				// Timing expired card
+				DayEx[i] = DayEx[i + 1];
+				MonthEx[i] = MonthEx[i + 1];
+				YearEx[i] = YearEx[i + 1];
+			}
+			studentcounter--; flag = 1;
 		}
-		studentcounter--; flag = 1;
+		else if (answer == 'n' || answer == 'N')
+		{
+			printf("  -> Cancelled.");
+			Sleep(1000);
+			return;
+		}
 	}
 	if (flag == 1) {
-		printf("Xoa thanh cong !\n");
+		printf("  -> Student deleted successfully !\n");
 		printf("\n");
 		Sleep(500);
 		StudentListingENG();
 	}	
 	else
 	{
-		printf("Co loi khi xoa, vui long thu lai..");
-		Sleep(500);
+		printf("  -> Something went wrong... This task can't be executed. Please try again...");
+		Sleep(1000);
 	}
 	
 }
@@ -394,10 +411,10 @@ Output : Student info
 */
  void SearchByIDENG(char id[25]) {
 	int flag = 0;
+	printf("================ SEARCHING RESULT ==================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(id, ID[i]) == 0) {
-			printf("================ SEARCHING RESULT ==================\n");
 			printf("   -> Library ID : ");
 			puts(LibraryID[i]);
 			printf("   -> Name : ");
@@ -422,7 +439,7 @@ Output : Student info
 	else
 	{
 		printf("\n");
-		printf("   - > Searched end with %d result \n", flag);
+		printf("   - > Searched end with %d result(s). \n", flag);
 	}
 	_getch();
 }
@@ -432,10 +449,10 @@ Output : Student info if it matched
 */
  void SearchByNameENG(char name[25]) {
 	int flag = 0;
+	printf("===================== SEARCHING RESULT ======================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(name, Name[i]) == 0) {
-			printf("===================== SEARCHING RESULT ======================\n");
 			printf("   -> Library ID : ");
 			puts(LibraryID[i]);
 			printf("   -> Name : ");
@@ -460,7 +477,7 @@ Output : Student info if it matched
 	else
 	{
 		printf("\n");
-		printf("   - > Searched end with %d result.\n", flag);
+		printf("   - > Searched end with %d result(s).\n", flag);
 	}
 	_getch();
 }
