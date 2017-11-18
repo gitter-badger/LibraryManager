@@ -6,8 +6,6 @@
 */
 #include "LibraryComponents.h"
 #include "LibraryCard.h"
-#include <stdio.h>
-#include <conio.h>
 #include "Statistics.h"
 #include "BookComponents.h"
 #include "StudentComponents.h"
@@ -46,30 +44,33 @@ void BorrowingCardInputENG() {
 
 			// input borrowing day	
 			printf("\n");
-			printf("\t=============== NHAP NGAY MUON ========================\n");
-			printf("\t  -> Nhap ngay muon : ");
+			printf("\t=============== BORROWING INFO INPUT ========================\n");
+			printf("\t  -> Input borrowing day : ");
 			scanf_s("%d", &BorrowingDay[borrowedcard]);
-			printf("\t  -> Nhap thang muon : ");
+			printf("\t  -> Input borrowing month : ");
 			scanf_s("%d", &BorrowingMonth[borrowedcard]);
-			printf("\t  -> Nhap nam muon : ");
+			printf("\t  -> Input borrowing year : ");
 			scanf_s("%d", &BorrowingYear[borrowedcard]);
 			printf("\n");
-			printf("\t=============== NHAP THONG TIN SACH MUON ==============\n");
+			printf("\t=============== BORROWING BOOKS INFO INPUT ==============\n");
 			do
 			{
 				printf("\n");
-				printf("\t  -> Nhap so luong sach doc gia can muon : ");
+				printf("\t  -> How many books do you want to borrow? : ");
 				scanf_s("%d", &bookInATime[borrowedcard]);
-				readybook -= bookInATime[borrowedcard];
-				borrowedbook += bookInATime[borrowedcard];
-				remainingBook[borrowedcard] = bookInATime[borrowedcard];
 				if (bookInATime[borrowedcard] > bookcounter)
 				{
-					printf("  -> So sach muon vuot qua du lieu thu vien ! Vui long thu lai !\n");
+					printf("  -> You borrowed too much ! There isn't enough books for you !\n");
 					Sleep(1000);
 					continue;
 				}
-				else break;
+				else
+				{
+					readybook -= bookInATime[borrowedcard];
+					borrowedbook += bookInATime[borrowedcard];
+					remainingBook[borrowedcard] = bookInATime[borrowedcard];
+					break;
+				}
 			} while (true);
 
 			getchar();
@@ -78,7 +79,7 @@ void BorrowingCardInputENG() {
 				do
 				{
 					int flag = 0;
-					printf("\t  -> Nhap ma sach thu %d :  ", i + 1);
+					printf("\t  -> Input ISBN of book %d :  ", i + 1);
 					gets_s(BorrowingISBN[i]);
 					for (int j = 0; j < bookcounter; j++)
 					{
@@ -91,14 +92,14 @@ void BorrowingCardInputENG() {
 					}
 					if (flag == 1)
 					{
-						printf(" -> Them sach vao the muon thanh cong ! \n");
+						printf(" -> Added to borrowing card successfully ! \n");
 						Sleep(1000);
 						break;
 					}
 
 					else if (flag == 0)
 					{
-						printf(" -> Thong tin sach khong ton tai trong thu vien ! Vui long tao moi hoac cap nhat !\n");
+						printf(" -> That book you are looking for isn't exist in library database  !\n");
 						Sleep(1000);
 						system("cls");
 						continue;
@@ -131,12 +132,12 @@ void EstimatedReturnTimeENG() {
 	// Determining Estimated time
 	if (BorrowingDay[borrowedcard - 1] == realreturnday) // Mean if borrows in last day of a month
 	{
-		estimatedDay[borrowedcard - 1] = 6; // Maximum days for borrowing are 7 days
+		estimatedDay[borrowedcard - 1] = 7; // Maximum days for borrowing are 7 days
 		estimatedMonth[borrowedcard - 1] = BorrowingMonth[borrowedcard - 1] + 1;
 		estimatedYear[borrowedcard - 1] = BorrowingYear[borrowedcard - 1];
 	}
 	else {
-		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 6;
+		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 7;
 		if (estimatedDay[borrowedcard - 1] > realreturnday)
 		{
 			estimatedDay[borrowedcard - 1] = estimatedDay[borrowedcard - 1] - realreturnday;
@@ -256,12 +257,12 @@ void ReturningCardInputENG() {
 					//int flag = 0;
 					printf("     -> Input number of books for returning : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					readybook += returnInATime[returnedcard];
-					remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 					if (remainingBook[returnedcard]<0)
 						continue;
 					else if (remainingBook[returnedcard] == 0) // return all books in a time
 					{
+						readybook += returnInATime[returnedcard];
+						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
 						{
 							printf("   -> Input ISBN of book %d : ", j + 1);
@@ -275,6 +276,8 @@ void ReturningCardInputENG() {
 					}
 					else
 					{
+						readybook += returnInATime[returnedcard];
+						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
 						{
 							printf("   -> Input ISBN of book %d : ", j + 1);
@@ -310,7 +313,7 @@ void ReturningCardListingENG() {
 				printf("   -> Time borrowed : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
 				printf("   -> Estimated returning time : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
 				printf("   -> Real returning time : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
-				printf("   -> Total books borrowed : %d", bookInATime[i]);
+				printf("   -> Total books borrowed : %d\n", bookInATime[i]);
 				printf("   -> List of book's name borrowed : \n");
 				for (int j = 0; j < bookInATime[i]; j++)
 				{
@@ -322,7 +325,7 @@ void ReturningCardListingENG() {
 							puts(BookName[k]);
 
 				}
-				printf("   -> Penalty fee : %d VND \n", PenaltyFee(returningDay[i], returningMonth[i], returningYear[i], estimatedDay[i], estimatedMonth[i], estimatedYear[i]));
+				printf("   -> Penalty fee : %d VND \n", PenaltyFeeENG(returningDay[i], returningMonth[i], returningYear[i], estimatedDay[i], estimatedMonth[i], estimatedYear[i]));
 				printf("========================================================================\n");
 				flag = 1; break;
 			}
@@ -618,28 +621,28 @@ void CardCreatingMenuENG() {
 		if (choice == 0) break;
 		else if (choice == 1)
 		{
-			BorrowingCardInput();
-			EstimatedReturnTime();
+			BorrowingCardInputENG();
+			EstimatedReturnTimeENG();
 			break;
 		}
 		else if (choice == 2)
 		{
-			ReturningCardInput();
+			ReturningCardInputENG();
 			// EstimatedReturnTime(); no need
 			break;
 		}
 		else if (choice == 3)
 		{
-			BorrowingCardListing(); break;
+			BorrowingCardListingENG(); break;
 		}
 		else if (choice == 4)
 		{
-			ReturningCardListing(); break;
+			ReturningCardListingENG(); break;
 		}
 		else
 		{
-			printf("Lua chon khong hop le ! Vui long thu lai !\n");
-			Sleep(500);
+			printf(" -> Invalid choice ! Please try again !\n");
+			Sleep(1000);
 		}
 	}
 }

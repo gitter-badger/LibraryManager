@@ -174,7 +174,7 @@ void MainActivityENG()
 				{
 					system("cls");
 					printf("\n\n");
-					printf("============ TOTAL BOOKS STATS ==============\n");
+					printf("\t\t\t=================== TOTAL BOOKS STATS ===================\n");
 					BookRemainingENG();
 					break;
 				}
@@ -187,28 +187,28 @@ void MainActivityENG()
 				case 3:
 				{
 					system("cls");
-					printf("=================== THONG KE SO LUONG DOC GIA ===================\n");
+					printf("=================== STUDENTS STATS ===================\n");
 					printf("\n");
-					printf("  -> Tong so doc gia trong thu vien la : %d", StudentStatistics());
+					printf("  -> Total students in library's database are : %d", StudentStatisticsENG());
 					_getch();
 					break;
 				}
 				case 4 :
 				{
 					system("cls");
-					StatsBasedSex();
+					StatsBasedSexENG();
 					break;
 				}
 				case 5: 
 				{
 					system("cls");
-					TotalBookInUse();
+					TotalBookInUseENG();
 					break;
 				}
 				case 6:
 				{
 					system("cls");
-					LateStats();
+					LateStatsENG();
 					break;
 				}
 				default:

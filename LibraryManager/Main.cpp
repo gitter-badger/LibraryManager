@@ -11,25 +11,29 @@ void main(){
 	if (langchoice == 1)
 	{	
 		Sleep(500);
-		printf("\n\t\t\t   -> Dang thiet lap ngon ngu");
+		printf("\n\t\t\t\t   -> Dang thiet lap ngon ngu ");
 		for (int i = 0; i < 3; i++)
 		{
 			Sleep(500);
 			printf(".");
 		}
+		printf(" OK");
+		Sleep(500);
 		system("cls");
 		MainActivity();
 	}
        
-        else if(langchoice ==2)
+        else if(langchoice == 2)
         {
 			Sleep(500);
-			printf("\n\t\t\t   -> Setting language");
+			printf("\n\t\t\t\t   -> Setting language");
 			for (int i = 0; i < 3; i++)
 			{
 				Sleep(500);
 				printf(".");
 			}
+			printf(" Done");
+			Sleep(500);
 			system("cls");
             MainActivityENG();
         }

@@ -318,20 +318,34 @@ Output: Listed book available
 */
 void BookDeletingENG(int number) {
 	int flag = 0;
-	if (number > 0 && number <= bookcounter) {
-		for (int i = number - 1; i < bookcounter - 1; i++) {
-			strcpy_s(ISBN[i], ISBN[i + 1]);
-			strcpy_s(BookName[i], BookName[i + 1]);
-			strcpy_s(Author[i], Author[i + 1]);
-			strcpy_s(Producer[i], Producer[i + 1]);
-			strcpy_s(YearProducing[i], YearProducing[i + 1]);
-			strcpy_s(Genre[i], Genre[i + 1]);
-			Cost[i] = Cost[i + 1];
-			TotalBook -= Amount[i];
-			Amount[i] = Amount[i + 1];
+	char answer;
+	fflush(stdin);
+	getchar();
+	printf(" -> Confirm delete this student ? Type Y or y for Yes, N or n to Cancel : ");
+	answer = getchar();
+	if (answer == 'y' || answer == 'Y')
+	{ 
+		if (number > 0 && number <= bookcounter) {
+			for (int i = number - 1; i < bookcounter - 1; i++) {
+				strcpy_s(ISBN[i], ISBN[i + 1]);
+				strcpy_s(BookName[i], BookName[i + 1]);
+				strcpy_s(Author[i], Author[i + 1]);
+				strcpy_s(Producer[i], Producer[i + 1]);
+				strcpy_s(YearProducing[i], YearProducing[i + 1]);
+				strcpy_s(Genre[i], Genre[i + 1]);
+				Cost[i] = Cost[i + 1];
+				TotalBook -= Amount[i];
+				Amount[i] = Amount[i + 1];
+			}
+			bookcounter--;
+			flag = 1;
 		}
-		bookcounter--;
-		flag = 1;
+	}
+	else if (answer == 'n' || answer == 'N')
+	{
+		printf("  -> Cancelled.");
+		Sleep(1000);
+		return;
 	}
 	if (flag == 1) {
 		printf(" -> Book deleted successfully !\n");

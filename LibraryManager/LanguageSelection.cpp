@@ -16,7 +16,7 @@ int LanguageSelection()
 		printf("\t\t\t\t\tMoi chon ngon ngu/Select your language :\n\n");
 		printf("\t\t\t\t\t\t  1. Tieng Viet \n");
 		printf("\t\t\t\t\t\t  2. English  \n\n");
-		printf("\n\t\t\t         -> Nhap vao lua chon cua ban /Input your choice : ");
+		printf("\n\t\t\t\t   -> Nhap vao lua chon cua ban /Input your choice : ");
 		scanf_s("%d", &lang);
 		if (lang == 1 || lang == 2) break;
 		else

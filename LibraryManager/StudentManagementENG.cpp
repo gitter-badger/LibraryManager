@@ -66,7 +66,7 @@ Output : Initial first student informations
 				gets_s(ID[studentcounter]);
 				printf("  -> Birthday of student %d : ", studentcounter + 1);
 				gets_s(Birth[studentcounter]);
-				printf("  -> Sex of student %d : ", studentcounter + 1);
+				printf("  -> Sex of student %d (type Male or Female) : ", studentcounter + 1);
 				gets_s(Sex[studentcounter]);
 				printf("  -> Email of student %d : ", studentcounter + 1);
 				gets_s(Email[studentcounter]);
@@ -401,7 +401,7 @@ Output : Deleted student, listing student available*/
 	if (flag == 1) {
 		printf("  -> Student deleted successfully !\n");
 		printf("\n");
-		Sleep(500);
+		Sleep(1000);
 		StudentListingENG();
 	}	
 	else

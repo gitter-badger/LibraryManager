@@ -58,16 +58,19 @@ void BorrowingCardInput() {
 				printf("\n");
 				printf("\t  -> Nhap so luong sach doc gia can muon : ");
 				scanf_s("%d", &bookInATime[borrowedcard]);
-				readybook -= bookInATime[borrowedcard];
-				borrowedbook += bookInATime[borrowedcard];
-				remainingBook[borrowedcard] = bookInATime[borrowedcard];
 				if (bookInATime[borrowedcard] > bookcounter)
 				{
 					printf("  -> So sach muon vuot qua du lieu thu vien ! Vui long thu lai !\n");
 					Sleep(1000);
 					continue;
 				}
-				else break;
+				else
+				{
+					readybook -= bookInATime[borrowedcard];
+					borrowedbook += bookInATime[borrowedcard];
+					remainingBook[borrowedcard] = bookInATime[borrowedcard];
+					break;
+				}
 			} while (true);
 			
 			getchar();
@@ -129,12 +132,12 @@ void EstimatedReturnTime() {
 	// Determining Estimated time
 	if (BorrowingDay[borrowedcard - 1] == realreturnday) // Mean if borrows in last day of a month
 	{
-		estimatedDay[borrowedcard - 1] = 6; // Maximum days for borrowing are 7 days
+		estimatedDay[borrowedcard - 1] = 7; // Maximum days for borrowing are 7 days
 		estimatedMonth[borrowedcard - 1] = BorrowingMonth[borrowedcard - 1] + 1;
 		estimatedYear[borrowedcard - 1] = BorrowingYear[borrowedcard - 1];
 	}
 	else {
-		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 6;
+		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 7;
 		if (estimatedDay[borrowedcard - 1] > realreturnday)
 		{
 			estimatedDay[borrowedcard - 1] = estimatedDay[borrowedcard - 1] - realreturnday;
@@ -254,12 +257,12 @@ void ReturningCardInput() {
 					//int flag = 0;
 					printf("     -> Nhap so sach can tra : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					readybook += returnInATime[returnedcard];
-					remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 					if (remainingBook[returnedcard]<0)
 						continue;
 					else if (remainingBook[returnedcard]==0) // return all books in a time
 					{
+						readybook += returnInATime[returnedcard];
+						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
 						{
 							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
@@ -308,7 +311,7 @@ void ReturningCardListing() {
 				printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
 				printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
 				printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
-				printf("   -> Tong so cuon sach da muon : %d", bookInATime[i]);
+				printf("   -> Tong so cuon sach da muon : %d\n", bookInATime[i]);
 				printf("   -> Danh sach cac sach da muon : \n");
 				for (int j = 0; j < bookInATime[i]; j++)
 				{
@@ -592,6 +595,7 @@ daysover = distance2 + (28 - estimatedDay);
 			fee = 5000 * totaldaysover;
 			return fee;
 		}
+		
 }
 /* Starting CardCreatingMenu function 
 Type : void

@@ -66,7 +66,7 @@ Output : Initial first student informations
 				gets_s(ID[studentcounter]);
 				printf("  -> Ngay thang nam sinh doc gia thu %d : ", studentcounter + 1);
 				gets_s(Birth[studentcounter]);
-				printf("  -> Gioi tinh doc gia thu %d : ", studentcounter + 1);
+				printf("  -> Gioi tinh doc gia thu %d (Nam hoac Nu) : ", studentcounter + 1);
 				gets_s(Sex[studentcounter]);
 				printf("  -> Email doc gia thu %d : ", studentcounter + 1);
 				gets_s(Email[studentcounter]);
@@ -393,13 +393,13 @@ Output : Deleted student, listing student available*/
 	if (flag == 1) {
 		printf("Xoa thanh cong !\n");
 		printf("\n");
-		Sleep(500);
+		Sleep(1000);
 		StudentListing();
 	}
 	else
 	{
 		printf("Co loi khi xoa, vui long thu lai..");
-		Sleep(500);
+		Sleep(1000);
 	}
 	
 }
