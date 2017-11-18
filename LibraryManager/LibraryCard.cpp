@@ -1,7 +1,11 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "LibraryComponents.h"
 #include "LibraryCard.h"
-#include <stdio.h>
-#include <conio.h>
 #include "Statistics.h"
 #include "BookComponents.h"
 #include "StudentComponents.h"
