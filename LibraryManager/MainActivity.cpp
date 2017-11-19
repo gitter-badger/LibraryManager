@@ -1,7 +1,12 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "MainActivity.h"
-
-void main() {
-	int menuchoice, smchoice, bmchoice;
+void MainActivity() {
+	int menuchoice, smchoice, bmchoice, statschoice;
 	// Initialising components as waiting for avoiding interupt
 	InitializingComponents();
 	system("cls");
@@ -155,11 +160,65 @@ void main() {
 			fflush(stdin);
 			CardCreatingMenu();
 			break;
-		}
+		} break;
+		case 4: // statistics menu 
+		{
+			while (true)
+			{
+				statschoice = StatisticsMenu();
+				if (statschoice == 0) break;
+				switch (statschoice)
+				{
+				case 1: 
+				{
+					system("cls");
+					printf("\n\n");
+					printf("============ THONG KE SO SACH TRONG THU VIEN ==============\n");
+					BookRemaining();
+					break;
+				}
+				case 2: 
+				{
+					system("cls");
+					BookStatsByGenre();
+					break;
+				}
+				case 3:
+				{
+					system("cls");
+					printf("=================== THONG KE SO LUONG DOC GIA ===================\n");
+					printf("\n");
+					printf("  -> Tong so doc gia trong thu vien la : %d", StudentStatistics());
+					_getch();
+					break;
+				}
+				case 4 :
+				{
+					system("cls");
+					StatsBasedSex();
+					break;
+				}
+				case 5: 
+				{
+					system("cls");
+					TotalBookInUse();
+					break;
+				}
+				case 6:
+				{
+					system("cls");
+					LateStats();
+					break;
+				}
+				default:
+					break;
+				}
+			}
+		} break;
 		case 0 :
 		{
 			return;
-		}
+		} break;
 		case 5: // about author
 		{
 			system("cls");
@@ -167,6 +226,10 @@ void main() {
 			break;
 		} break;
 		default:
+		{
+			printf(" -> Lua chon khong hop le !");
+			Sleep(1000);
+		}
 			break;
 		}
 	}

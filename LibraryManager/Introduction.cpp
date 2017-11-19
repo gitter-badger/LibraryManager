@@ -1,3 +1,9 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "Introduction.h"
 #include "BookManagement.h"
 #include "StudentManagement.h"
@@ -6,7 +12,7 @@ Type : void
 Input : none
 Output: About author
 */
-void Introduction() {
+ void Introduction() {
 	system("cls");
 	printf("\n\n\n");
 	printf("\t  =================================================================================================\n");
@@ -31,7 +37,7 @@ Type: void
 Input : none
 Output : waiting system and prompting user for avoiding interrupts
 */
-void InitializingComponents() {
+ void InitializingComponents() {
 	printf("\n");
 	printf("\t\t================= CHAO MUNG BAN DEN VOI QUAN LI THU VIEN =================\n");
 	printf("\n");
@@ -49,7 +55,7 @@ void InitializingComponents() {
 	printf(". ");
 	Sleep(500);
 	printf(". \n");
-	printf("\t Luu y : De chuong trinh chay on dinh,\n\tban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
+	printf("\t Luu y : De chuong trinh chay on dinh,\n\t ban can phai nhap thong tin khoi dau cho 1 doc gia va 1 cuon sach dau tien.\n");
 	Sleep(2000);
 	printf("\t Ban da hieu roi chu. Bat dau nao. \n");
 	Sleep(2000);
@@ -151,7 +157,7 @@ Type : int
 Input: none
 Output :user's input
 */
-int StatisticsMenu() {
+ int StatisticsMenu() {
 	system("cls");
 	int choice;
 	printf("\t\t ========================= THONG KE CO BAN =========================\n");
@@ -163,6 +169,7 @@ int StatisticsMenu() {
 	printf("\t\t ||            4. Thong Ke So Luong Doc Gia Theo Gioi Tinh        ||\n");
 	printf("\t\t ||            5. Thong Ke So Sach Dang Duoc Muon                 ||\n");
 	printf("\t\t ||            6. Thong Ke Danh Sach Doc Gia Bi Tre Han           ||\n");
+	printf("\t\t ||            0. Quay lai menu chinh                             ||\n");
 	printf("\t\t ||                                                               ||\n");
 	printf("\t\t ===================================================================\n");
 	printf("                   Vui Long Chon Phim Chuc Nang :  ");

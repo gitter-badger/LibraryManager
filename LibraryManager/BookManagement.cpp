@@ -1,3 +1,9 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "BookManagement.h"
 #include "BookComponents.h"
 /* Starting GetBookInfo function
@@ -8,7 +14,7 @@ Output: Info
 Input: informations on arrays
 Output : informations stored for max 1 books
 */
- void BookDeclaration() {
+void BookDeclaration() {
 	while (true)
 	{
 		if (bookcounter > Max) printf("Khong du bo nho de them sach !");
@@ -31,9 +37,11 @@ Output : informations stored for max 1 books
 			printf("    -> The loai cuon sach thu %d : ", bookcounter + 1);
 			gets_s(Genre[bookcounter]);
 			printf("    -> Gia thanh cuon sach thu %d : ", bookcounter + 1);
-			gets_s(Cost[bookcounter]);
+			scanf_s("%d", &Cost[bookcounter]);
 			printf("    -> So luong cuon nhap ve : ");
 			scanf_s("%d", &Amount[bookcounter]);
+			TotalBook += Amount[bookcounter];
+			readybook += Amount[bookcounter];
 			bookcounter++; break;
 		}
 		if (bookcounter >= 1) break; //Declaring max 3 books
@@ -43,7 +51,7 @@ Output : informations stored for max 1 books
 Input : none
 Output : book informations
 */
- void BookCreating() {
+void BookCreating() {
 	 while (true)
 	 {
 		 int choice;
@@ -74,9 +82,11 @@ Output : book informations
 				 printf("    -> Nhap the loai : ");
 				 gets_s(Genre[bookcounter]);
 				 printf("    -> Nhap gia : ");
-				 gets_s(Cost[bookcounter]);
-				 printf("    -> Nhap vao so luong sach : ");
+				 scanf_s("%d", &Cost[bookcounter]);
+				 printf("    -> Nhap vao so luong sach nhap ve : ");
 				 scanf_s("%d", &Amount[bookcounter]);
+				 TotalBook += Amount[bookcounter];
+				 readybook += Amount[bookcounter];
 				 bookcounter++; 
 				 Sleep(1000);
 				 printf("Tao sach moi thanh cong !\n");
@@ -112,8 +122,7 @@ Output : listed books
 		puts(YearProducing[i]);
 		printf("   -> The loai : ");
 		puts(Genre[i]);
-		printf("   -> Gia thanh : ");
-		puts(Cost[i]);
+		printf("   -> Gia thanh : %d VND \n", Cost[i]);
 		printf("   -> So luong co san : %d\n", Amount[i]);
 	}
 	_getch();
@@ -122,7 +131,7 @@ Output : listed books
 Input : book position
 Output: listed books available
 */
- void BookEditing(int number){
+void BookEditing(int number){
 	if (number > 0 && number <= bookcounter)
 	{
 		int choice;
@@ -203,14 +212,24 @@ Output: listed books available
 		} break;
 		case 7: {
 			fflush(stdin);
-			char NewCost[25];
+			int newcost;
 			printf("Nhap vao gia moi : ");
-			gets_s(NewCost);
-			strcpy_s(Cost[number - 1], NewCost);
+			scanf_s("%d", &newcost);
+			Cost[number - 1] = newcost;
 			Sleep(1000);
 			printf("Chinh sua thanh cong !");
 			Sleep(500);
 		} break;
+		case 8:
+		{
+			int sl;
+			TotalBook -= Amount[number - 1];
+			printf(" -> Nhap vao so luong moi : ");
+			scanf_s("%d", &sl);
+			Amount[number - 1] = sl;
+			TotalBook += Amount[number - 1];
+			break;
+		}
 		default: 
 		{
 			printf(" Lua chon khong hop le ! Vui long thu lai ..");
@@ -231,7 +250,7 @@ Output: listed books available
 Input : choice
 Output : 
 */
-void EBSubMenu(int number) {
+ void EBSubMenu(int number) {
 	while (true)
 	{
 		if (number > 0 && number <= bookcounter)
@@ -268,7 +287,7 @@ void EBSubMenu(int number) {
 Input: book position
 Output: Book informations
 */
- void SeeBookChanges(int number) {
+void SeeBookChanges(int number) {
 	printf("============ THONG TIN CUON SACH THU %d SAU KHI CHINH SUA ==============\n", number);
 	printf("   -> Ma sach : ");
 	puts(ISBN[number - 1]);
@@ -282,8 +301,7 @@ Output: Book informations
 	puts(YearProducing[number - 1]);
 	printf("   -> The loai : ");
 	puts(Genre[number - 1]);
-	printf("   -> Gia thanh : ");
-	puts(Cost[number - 1]);
+	printf("   -> Gia thanh : %d VND \n", Cost[number-1]);
 	printf("   -> So luong co san : %d\n", Amount[number - 1]);
 	_getch();
 }
@@ -293,30 +311,45 @@ Output: Listed book available
 */
  void BookDeleting(int number) {
 	int flag = 0;
-	if (number > 0 && number <= bookcounter) {
-		for (int i = number - 1; i < bookcounter - 1; i++) {
-			strcpy_s(ISBN[i], ISBN[i + 1]);
-			strcpy_s(BookName[i], BookName[i + 1]);
-			strcpy_s(Author[i], Author[i + 1]);
-			strcpy_s(Producer[i], Producer[i + 1]);
-			strcpy_s(YearProducing[i], YearProducing[i + 1]);
-			strcpy_s(Genre[i], Genre[i + 1]);
-			strcpy_s(Cost[i], Cost[i + 1]);
-			Amount[i] = Amount[i + 1];
+	char answer;
+	fflush(stdin);
+	getchar();
+	printf("  -> Ban co chac chan muon xoa hay khong ? (Y) de xoa, (N) de huy bo. : ");
+	answer = getchar();
+	if (answer == 'y' || answer == 'Y')
+	{ 
+		if (number > 0 && number <= bookcounter) {
+			for (int i = number - 1; i < bookcounter - 1; i++) {
+				strcpy_s(ISBN[i], ISBN[i + 1]);
+				strcpy_s(BookName[i], BookName[i + 1]);
+				strcpy_s(Author[i], Author[i + 1]);
+				strcpy_s(Producer[i], Producer[i + 1]);
+				strcpy_s(YearProducing[i], YearProducing[i + 1]);
+				strcpy_s(Genre[i], Genre[i + 1]);
+				Cost[i] = Cost[i + 1];
+				TotalBook -= Amount[i];
+				Amount[i] = Amount[i + 1];
+			}
+			bookcounter--;
+			flag = 1;
 		}
-		bookcounter--;
-		flag = 1;
+	}
+	else if (answer == 'n' || answer == 'N')
+	{
+		printf("  -> Da huy.");
+		Sleep(1000);
+		return;
 	}
 	if (flag == 1) {
 		printf(" -> Xoa thanh cong !\n");
 		printf("\n");
-		Sleep(500);
+		Sleep(1000);
 		BookListing();
 	}
 	else
 	{
 		printf("Co loi khi xoa, vui long thu lai..");
-		Sleep(500);
+		Sleep(1000);
 	}
 }
 /* Starting SearchByBookName function
@@ -325,9 +358,9 @@ Output : Return info if it matched
 */
  void SearchByBookName(char name[30]) {
 	int flag = 0;
+	printf("============ KET QUA TIM KIEM ===========\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(name, BookName[i]) == 0) {
-			printf("============ KET QUA TIM KIEM ===========\n");
 			printf("\n");
 			printf("    -> Ma sach : ");
 			puts(ISBN[i]);
@@ -341,8 +374,7 @@ Output : Return info if it matched
 			puts(YearProducing[i]);
 			printf("    -> The loai : ");
 			puts(Genre[i]);
-			printf("    -> Gia(VND) : ");
-			puts(Cost[i]);
+			printf("    -> Gia(VND) : %d\n", Cost[i]);
 			printf("==========================================\n");
 			flag++;
 		}	
@@ -361,9 +393,9 @@ Output : Return info if it matched
 */
  void SearchByISBN(char isbn[30]) {
 	int flag = 0;
+	printf("============ KET QUA TIM KIEM ===========\n");
 	for (int i = 0; i < bookcounter; i++) {
 		if (strcmp(isbn, ISBN[i]) == 0) {
-			printf("============ KET QUA TIM KIEM ===========\n");
 			printf("\n");
 			printf("    -> Ma sach : ");
 			puts(ISBN[i]);
@@ -377,8 +409,7 @@ Output : Return info if it matched
 			puts(YearProducing[i]);
 			printf("    -> The loai : ");
 			puts(Genre[i]);
-			printf("    -> Gia(VND) : ");
-			puts(Cost[i]);
+			printf("    -> Gia(VND) : %d\n", Cost[i]);
 			printf("==========================================\n");
 			flag++;
 		}

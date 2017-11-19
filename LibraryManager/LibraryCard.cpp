@@ -1,7 +1,12 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "LibraryComponents.h"
 #include "LibraryCard.h"
-#include <stdio.h>
-#include <conio.h>
+#include "Statistics.h"
 #include "BookComponents.h"
 #include "StudentComponents.h"
 /*Starting BorrowingCardInput function
@@ -59,7 +64,13 @@ void BorrowingCardInput() {
 					Sleep(1000);
 					continue;
 				}
-				else break;
+				else
+				{
+					readybook -= bookInATime[borrowedcard];
+					borrowedbook += bookInATime[borrowedcard];
+					remainingBook[borrowedcard] = bookInATime[borrowedcard];
+					break;
+				}
 			} while (true);
 			
 			getchar();
@@ -121,12 +132,12 @@ void EstimatedReturnTime() {
 	// Determining Estimated time
 	if (BorrowingDay[borrowedcard - 1] == realreturnday) // Mean if borrows in last day of a month
 	{
-		estimatedDay[borrowedcard - 1] = 6; // Maximum days for borrowing are 7 days
+		estimatedDay[borrowedcard - 1] = 7; // Maximum days for borrowing are 7 days
 		estimatedMonth[borrowedcard - 1] = BorrowingMonth[borrowedcard - 1] + 1;
 		estimatedYear[borrowedcard - 1] = BorrowingYear[borrowedcard - 1];
 	}
 	else {
-		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 6;
+		estimatedDay[borrowedcard - 1] = BorrowingDay[borrowedcard - 1] + 7;
 		if (estimatedDay[borrowedcard - 1] > realreturnday)
 		{
 			estimatedDay[borrowedcard - 1] = estimatedDay[borrowedcard - 1] - realreturnday;
@@ -199,6 +210,7 @@ Output: returning card created
 void ReturningCardInput() {
 	while (true)
 	{
+		int brlocation;
 		system("cls");
 		if (returnedcard > Max) printf("Khong du bo nho de tao phieu tra sach ! Vui long xoa bot va thu lai !");
 		else 
@@ -216,6 +228,7 @@ void ReturningCardInput() {
 						if (strcmp(ReturningID[returnedcard],BorrowingID[i]) == 0)
 						{
 							flag = 1; // already in db
+							brlocation = i;  // point the borrower location
 							break;
 						}
 					}
@@ -240,15 +253,35 @@ void ReturningCardInput() {
 				scanf_s("%d", &returningYear[returnedcard]);
 				do
 				{
-					int flag = 0;
+					printf("\n");
+					//int flag = 0;
 					printf("     -> Nhap so sach can tra : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					
-					for (int j = 0; j < returnInATime[returnedcard]; j++)
+					if (remainingBook[returnedcard]<0)
+						continue;
+					else if (remainingBook[returnedcard]==0) // return all books in a time
 					{
-						printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
-						getchar();
-						gets_s(ReturningISBN[j]);
+						readybook += returnInATime[returnedcard];
+						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
+						for (int j = 0; j < returnInATime[returnedcard]; j++)
+						{
+							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
+							getchar();
+							gets_s(ReturningISBN[j]);
+						}
+						printf("  -> Tra sach thanh cong ! \n");
+						Sleep(1000);
+						borrowedcard--;
+						break;
+					}
+					else
+					{
+						for (int j = 0; j < returnInATime[returnedcard]; j++)
+						{
+							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
+							getchar();
+							gets_s(ReturningISBN[j]);
+						}
 					}
 				} while (true);
 				returnedcard++; break;
@@ -267,7 +300,7 @@ void ReturningCardListing() {
 	else
 	{
 		int flag = 0;
-		for (int i = 0; i < borrowedcard; i++)
+		for (int i = 0; i < returnedcard; i++)
 		{
 			if (strcmp(BorrowingID[i], ReturningID[i]) == 0)
 			{
@@ -278,6 +311,7 @@ void ReturningCardListing() {
 				printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
 				printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
 				printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);
+				printf("   -> Tong so cuon sach da muon : %d\n", bookInATime[i]);
 				printf("   -> Danh sach cac sach da muon : \n");
 				for (int j = 0; j < bookInATime[i]; j++)
 				{
@@ -561,6 +595,7 @@ daysover = distance2 + (28 - estimatedDay);
 			fee = 5000 * totaldaysover;
 			return fee;
 		}
+		
 }
 /* Starting CardCreatingMenu function 
 Type : void
@@ -576,13 +611,13 @@ void CardCreatingMenu() {
 		printf("   -> 2. Lap phieu tra sach \n");
 		printf("   -> 3. Xem danh sach phieu muon \n");
 		printf("   -> 4. Xem danh sach phieu tra \n");
-		printf("   -> 5. Thoat                \n");
+		printf("   -> 0. Thoat                \n");
 		printf("===================================================\n");
 		int choice;
 		printf("   -> Nhap vao lua chon : ");
 		scanf_s("%d", &choice);
 		getchar();
-		if (choice == 5) break;
+		if (choice == 0) break;
 		else if (choice == 1)
 		{
 			BorrowingCardInput();

@@ -30,15 +30,23 @@
     <ClInclude Include="StudentManagement.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BookManagementENG.cpp" />
+    <ClCompile Include="IntroductionENG.cpp" />
+    <ClCompile Include="LanguageSelection.cpp" />
+    <ClCompile Include="LibraryCardENG.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainActivity.cpp" />
     <ClCompile Include="BookComponents.cpp" />
     <ClCompile Include="BookManagement.cpp" />
     <ClCompile Include="Introduction.cpp" />
     <ClCompile Include="LibraryCard.cpp" />
     <ClCompile Include="LibraryComponents.cpp" />
+    <ClCompile Include="MainActivityENG.cpp" />
     <ClCompile Include="Statistics.cpp" />
+    <ClCompile Include="StatisticsENG.cpp" />
     <ClCompile Include="StudentComponents.cpp" />
     <ClCompile Include="StudentManagement.cpp" />
+    <ClCompile Include="StudentManagementENG.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

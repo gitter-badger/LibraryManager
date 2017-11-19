@@ -1,11 +1,17 @@
+/*
+  	Copyright™ Hieu Hoang Minh. The Library Manager Project.
+  	See source code on https://github.com/hyperion0201/LibraryManager
+    Free for personal and commercial use under the MIT license .
+	2017. Ho Chi Minh University of Science.
+*/
 #include "StudentManagement.h"
 #include "StudentComponents.h"
 
 /* Starting EditStudent SubMenu
 Input : ESSubMenu		 choice
-Output: choide
+Output: choice
 */
-void ESSubMenu(int number) {
+ void ESSubMenu(int number) {
 	//system("cls");
 	int choice;
 	while (true)
@@ -43,7 +49,7 @@ void ESSubMenu(int number) {
 Input : LibraryID, Name, ID, Birth, Sex, Email, Address
 Output : Initial first student informations
 */
-void StudentDeclaration() {
+ void StudentDeclaration() {
 	while (true) {
 		if (studentcounter >= Max) printf("Khong du bo nho de tao hoac cap nhat doc gia !");
 		else
@@ -60,7 +66,7 @@ void StudentDeclaration() {
 				gets_s(ID[studentcounter]);
 				printf("  -> Ngay thang nam sinh doc gia thu %d : ", studentcounter + 1);
 				gets_s(Birth[studentcounter]);
-				printf("  -> Gioi tinh doc gia thu %d : ", studentcounter + 1);
+				printf("  -> Gioi tinh doc gia thu %d (Nam hoac Nu) : ", studentcounter + 1);
 				gets_s(Sex[studentcounter]);
 				printf("  -> Email doc gia thu %d : ", studentcounter + 1);
 				gets_s(Email[studentcounter]);
@@ -80,7 +86,7 @@ void StudentDeclaration() {
 Input : None
 Output: Day, month, year of library card for first use
 */
-void DayCreating() {
+ void DayCreating() {
 	printf("\t  -> Nhap ngay lap the : ");
 	scanf_s("%d", &DayCre[studentcounter]);
 	printf("\t  -> Nhap thang lap the : ");
@@ -92,7 +98,7 @@ void DayCreating() {
 Input : DayCre, MonthCre, YearCre
 Output: DayEx, MonthEx, YearEx
 */
-void DayExpired() {
+ void DayExpired() {
 	DayEx[studentcounter] = DayCre[studentcounter];
 	MonthEx[studentcounter] = MonthCre[studentcounter];
 	YearEx[studentcounter] = YearCre[studentcounter] + 4;
@@ -101,7 +107,7 @@ void DayExpired() {
 Input : None
 Output : students list
 */
-void StudentListing() {
+ void StudentListing() {
 	printf("\t\t================ DANH SACH CAC DOC GIA THU VIEN ================\n\n");
 	if (studentcounter <= 0) printf("Hien tai chua co hoc sinh nao trong du lieu thu vien. Vui long cap nhat hoac them doc gia !\n");
 	else {
@@ -186,7 +192,7 @@ void StudentCreating() {
 Input : student position
 Output : local changed 
 */
-void StudentEditing(int number) {
+ void StudentEditing(int number) {
 	while (true)
 	{
 		if (number> 0 && number <= studentcounter)
@@ -325,7 +331,7 @@ void StudentEditing(int number) {
 /* Starting SeeLocalChanges function
 Input : student position
 Output: Student info */
-void SeeLocalChanges(int number) {
+ void SeeLocalChanges(int number) {
 	printf("\n");
 	printf("============== THONG TIN DOC GIA THU %d SAU KHI CHINH SUA =============\n", number);
 	printf("\n");
@@ -351,40 +357,49 @@ void SeeLocalChanges(int number) {
 /*Starting StudentDelete function
 Input: Student position
 Output : Deleted student, listing student available*/
-void StudentDeleting(int number) {
+ void StudentDeleting(int number) {
 	int flag = 0;
 	if (number > 0 && number <= studentcounter)
 	{
-		for (int i = number - 1; i < studentcounter - 1; i++) 
+		char answer;
+		fflush(stdin);
+		getchar();
+		printf("  -> Ban co chac chan muon xoa hay khong ? (Y) de xoa, (N) de huy bo. : ");
+		answer = getchar();
+		if (answer == 'y' || answer == 'Y')
 		{
-			strcpy_s(LibraryID[i], LibraryID[i + 1]);
-			strcpy_s(Name[i], Name[i + 1]);
-			strcpy_s(ID[i], ID[i + 1]);
-			strcpy_s(Birth[i], Birth[i + 1]);
-			strcpy_s(Sex[i], Sex[i + 1]);
-			strcpy_s(Email[i], Email[i + 1]);
-			strcpy_s(Address[i], Address[i + 1]);
-			//Timing library card
-			DayCre[i] = DayCre[i + 1];
-			MonthCre[i] = MonthCre[i + 1];
-			YearCre[i] = YearCre[i + 1];
-			// Timing expired card
-			DayEx[i] = DayEx[i + 1];
-			MonthEx[i] = MonthEx[i + 1];
-			YearEx[i] = YearEx[i + 1];
+			for (int i = number - 1; i < studentcounter - 1; i++)
+			{
+				strcpy_s(LibraryID[i], LibraryID[i + 1]);
+				strcpy_s(Name[i], Name[i + 1]);
+				strcpy_s(ID[i], ID[i + 1]);
+				strcpy_s(Birth[i], Birth[i + 1]);
+				strcpy_s(Sex[i], Sex[i + 1]);
+				strcpy_s(Email[i], Email[i + 1]);
+				strcpy_s(Address[i], Address[i + 1]);
+				//Timing library card
+				DayCre[i] = DayCre[i + 1];
+				MonthCre[i] = MonthCre[i + 1];
+				YearCre[i] = YearCre[i + 1];
+				// Timing expired card
+				DayEx[i] = DayEx[i + 1];
+				MonthEx[i] = MonthEx[i + 1];
+				YearEx[i] = YearEx[i + 1];
+			}
+			studentcounter--; flag = 1;
 		}
-		studentcounter--; flag = 1;
+		else if (answer == 'n' || answer == 'N') return;
 	}
 	if (flag == 1) {
 		printf("Xoa thanh cong !\n");
 		printf("\n");
-		Sleep(500);
+		Sleep(1000);
 		StudentListing();
 	}
 	else
 	{
 		printf("Co loi khi xoa, vui long thu lai..");
-		Sleep(500);
+		Sleep(1000);
 	}
 	
 }
@@ -392,12 +407,12 @@ void StudentDeleting(int number) {
 Input : Identity (ID) of student
 Output : Student info
 */
-void SearchByID(char id[25]) {
+ void SearchByID(char id[25]) {
 	int flag = 0;
+	printf("================ KET QUA TIM KIEM ==================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(id, ID[i]) == 0) {
-			printf("================ KET QUA TIM KIEM ==================\n");
 			printf("   -> Ma doc gia : ");
 			puts(LibraryID[i]);
 			printf("   -> Ten doc gia : ");
@@ -430,12 +445,12 @@ void SearchByID(char id[25]) {
 Input: Name student
 Output : Student info if it matched
 */
-void SearchByName(char name[25]) {
+ void SearchByName(char name[25]) {
 	int flag = 0;
+	printf("================ KET QUA TIM KIEM ==================\n");
 	for (int i = 0; i < studentcounter; i++) {
 		printf("\n");
 		if (strcmp(name, Name[i]) == 0) {
-			printf("================ KET QUA TIM KIEM ==================\n");
 			printf("   -> Ma doc gia : ");
 			puts(LibraryID[i]);
 			printf("   -> Ten doc gia : ");
