@@ -83,10 +83,11 @@ void BorrowingCardInput() {
 					gets_s(BorrowingISBN[i]);
 					for (int j = 0; j < bookcounter; j++)
 					{
-						if (strcmp(BorrowingISBN[i], ISBN[j]) == 0)
+						if (strcmp(BorrowingISBN[i], ISBN[j]) == 0 && Amount[j]>0)
 						{
 							flag = 1; // already in db
 							Amount[j]--;
+							strcpy_s(borrowName[i], BookName[j]);
 							break;
 						}
 					}
@@ -257,10 +258,11 @@ void ReturningCardInput() {
 					//int flag = 0;
 					printf("     -> Nhap so sach can tra : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					if (remainingBook[returnedcard]<0)
+					if (returnInATime[returnedcard]>bookInATime[returnedcard])
 						continue;
-					else if (remainingBook[returnedcard]==0) // return all books in a time
+					else if (returnInATime[returnedcard]==bookInATime[returnedcard]) // return all books in a time
 					{
+						borrowedbook -= returnInATime[returnedcard];	
 						readybook += returnInATime[returnedcard];
 						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
@@ -268,6 +270,9 @@ void ReturningCardInput() {
 							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
 							getchar();
 							gets_s(ReturningISBN[j]);
+							for (int k = 0; k < bookcounter; k++)
+								if (strcmp(ReturningISBN[j], ISBN[k]) == 0)
+									Amount[k]++;
 						}
 						printf("  -> Tra sach thanh cong ! \n");
 						Sleep(1000);
@@ -276,11 +281,17 @@ void ReturningCardInput() {
 					}
 					else
 					{
+						borrowedbook -= returnInATime[returnedcard];
+						readybook += returnInATime[returnedcard];
+						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
 						{
 							printf("   -> Nhap ma sach can tra thu %d : ", j + 1);
 							getchar();
 							gets_s(ReturningISBN[j]);
+							for (int k = 0; k < bookcounter; k++)
+								if (strcmp(ReturningISBN[j], ISBN[k]) == 0)
+									Amount[k]++;
 						}
 					}
 				} while (true);
