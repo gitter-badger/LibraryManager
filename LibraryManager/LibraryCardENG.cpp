@@ -83,8 +83,9 @@ void BorrowingCardInputENG() {
 					gets_s(BorrowingISBN[i]);
 					for (int j = 0; j < bookcounter; j++)
 					{
-						if (strcmp(BorrowingISBN[i], ISBN[j]) == 0)
+						if (strcmp(BorrowingISBN[i], ISBN[j]) == 0 && Amount[j]>0)
 						{
+							strcpy_s(borrowName[i], BookName[j]);
 							flag = 1; // already in db
 							Amount[j]--;
 							break;
@@ -257,10 +258,11 @@ void ReturningCardInputENG() {
 					//int flag = 0;
 					printf("     -> Input number of books for returning : ");
 					scanf_s("%d", &returnInATime[returnedcard]);
-					if (remainingBook[returnedcard]<0)
+					if (returnInATime[returnedcard]>bookInATime[returnedcard])
 						continue;
-					else if (remainingBook[returnedcard] == 0) // return all books in a time
+					else if (returnInATime[returnedcard] == bookInATime[returnedcard]) // return all books in a time
 					{
+						borrowedbook -= returnInATime[returnedcard];
 						readybook += returnInATime[returnedcard];
 						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
@@ -268,6 +270,9 @@ void ReturningCardInputENG() {
 							printf("   -> Input ISBN of book %d : ", j + 1);
 							getchar();
 							gets_s(ReturningISBN[j]);
+							for (int k = 0; k < bookcounter; k++)
+								 if (strcmp(ReturningISBN[j], ISBN[k]) == 0)
+									 Amount[k]++;
 						}
 						printf("  -> Returned successfully ! \n");
 						Sleep(1000);
@@ -276,6 +281,7 @@ void ReturningCardInputENG() {
 					}
 					else
 					{
+						borrowedbook -= returnInATime[returnedcard];
 						readybook += returnInATime[returnedcard];
 						remainingBook[returnedcard] = bookInATime[returnedcard] - returnInATime[returnedcard];
 						for (int j = 0; j < returnInATime[returnedcard]; j++)
@@ -283,6 +289,9 @@ void ReturningCardInputENG() {
 							printf("   -> Input ISBN of book %d : ", j + 1);
 							getchar();
 							gets_s(ReturningISBN[j]);
+							for (int k = 0; k < bookcounter; k++)
+								if (strcmp(ReturningISBN[j], ISBN[k]) == 0)
+									Amount[k]++;
 						}
 					}
 				} while (true);

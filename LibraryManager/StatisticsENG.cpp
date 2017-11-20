@@ -77,14 +77,11 @@ Output : print informations about books which are in-use
 void TotalBookInUseENG() {
 	printf(" ================= STATISTICS BOOKS IN-USE =================\n");
 	printf("   -> There are %d books which are in-use status.\n", borrowedbook);
-	printf("   -> Include : ");
+	printf("   -> Include : \n");
 	for (int i = 0; i < borrowedbook; i++)
 	{
-		if (strcmp(ISBN[i], BorrowingISBN[i]) == 0)
-		{
-			puts(BookName[i]);
-			printf(",");
-		}
+		printf(" -> ");
+		puts(borrowName[i]);
 	}
 	_getch();
 }
@@ -105,15 +102,15 @@ void LateStatsENG() {
 			late++;
 			printf("  -> Library ID (borrowing) : "); puts(BorrowingID[i]);
 			printf("  -> Name : "); puts(Name[i]);
-			printf("  -> Currently borrowing these books : ");
-			for (int j = 0; j < bookInATime[i]; i++)
+			//printf("  -> Currently borrowing these books : ");
+		/*	for (int j = 0; j < bookInATime[i]; i++)
 			{
 				printf("  -> ISBN : ");
 				puts(BorrowingISBN[j]);
 				printf("  -> Book name : ");
 				puts(BookName[j]);
 				printf("\n");
-			}
+			}*/
 		}
 	}
 	printf("   -> Total students in-late are %d !\n", late);
