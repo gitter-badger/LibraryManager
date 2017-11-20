@@ -77,14 +77,11 @@ Output : print informations about books which are in-use
 void TotalBookInUse() {
 	printf(" ================= THONG KE SACH DANG MUON =================\n");
 	printf("   -> Co %d sach dang duoc muon \n", borrowedbook);
-	printf("   Bao gom cac sach sau : ");
+	printf("   Bao gom cac sach sau : \n");
 	for (int i = 0; i < borrowedbook; i++)
 	{
-		if (strcmp(ISBN[i], BorrowingISBN[i]) == 0)
-		{
-			puts(BookName[i]);
-			printf(",");
-		}
+		printf(" -> ");
+		puts(borrowName[i]);
 	}
 	_getch();
 }
@@ -105,15 +102,15 @@ void LateStats() {
 			late++;
 			printf("  -> Ma doc gia : "); puts(BorrowingID[i]);
 			printf("  -> Ten doc gia : "); puts(Name[i]);
-			printf("  -> Hien tai dang muon cac sach : ");
-			for (int j = 0; j < bookInATime[i]; i++)
+			//printf("  -> Hien tai dang muon cac sach : ");
+			/*for (int j = 0; j < bookInATime[i]; i++)
 			{
 				printf("  -> Ma sach : ");
 				puts(BorrowingISBN[j]);
 				printf("  -> Ten sach : ");
 				puts(BookName[j]);
 				printf("\n");
-			}
+			}*/
 		}
 	}
 	printf("   -> Tong cong co %d doc gia dang tre han !\n", late);
