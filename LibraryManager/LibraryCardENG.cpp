@@ -351,7 +351,8 @@ Output: fee for against library's rule
 int PenaltyFeeENG(int returningDay, int returningMonth, int returningYear, int estimatedDay, int estimatedMonth, int estimatedYear)
 {
 	// Initiating variables : daysover(days over rules), fee(money for paying), distance1(between 2 returning time),
-	int daysover, fee, distance1, distance2;
+	int daysover, distance1, distance2;
+	int fee = 0;
 	// In-condition : estimatedYear = returningYear, estimatedMonth = returningMonth
 	if (estimatedYear == returningYear) // Same year
 	{
@@ -606,6 +607,7 @@ int PenaltyFeeENG(int returningDay, int returningMonth, int returningYear, int e
 		fee = 5000 * totaldaysover;
 		return fee;
 	}
+	return fee;
 }
 /* Starting CardCreatingMenu function
 Type : void

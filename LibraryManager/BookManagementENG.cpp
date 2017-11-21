@@ -223,11 +223,13 @@ void BookEditingENG(int number) {
 		case 8:
 		{
 			int sl;
+			readybook -= Amount[number - 1];
 			TotalBook -= Amount[number - 1];
 			printf(" -> Input new delivery amount : ");
 			scanf_s("%d", &sl);
 			Amount[number - 1] = sl;
 			TotalBook += Amount[number - 1];
+			readybook += Amount[number + 1];
 			Sleep(1000);
 			printf(" -> Delivery amount edited successfully !");
 			Sleep(500);

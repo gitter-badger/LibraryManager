@@ -223,11 +223,15 @@ void BookEditing(int number){
 		case 8:
 		{
 			int sl;
+			readybook -= Amount[number - 1];
 			TotalBook -= Amount[number - 1];
 			printf(" -> Nhap vao so luong moi : ");
 			scanf_s("%d", &sl);
 			Amount[number - 1] = sl;
 			TotalBook += Amount[number - 1];
+			readybook += Amount[number - 1];
+			printf(" -> Thay doi so luong thanh cong !\n");
+			Sleep(500);
 			break;
 		}
 		default: 
