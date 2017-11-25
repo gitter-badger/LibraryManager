@@ -318,7 +318,7 @@ void ReturningCardListing() {
 				printf("================== THONG TIN PHIEU TRA SACH =================\n");
 				printf("\n");
 				printf("   -> Ma so doc gia : ");
-				puts(BorrowingID[i]);
+				puts(ReturningID[i]);
 				printf("   -> Thoi diem muon sach : %d/%d/%d\n", BorrowingDay[i], BorrowingMonth[i], BorrowingYear[i]);
 				printf("   -> Thoi diem tra sach du kien : %d/%d/%d\n", estimatedDay[i], estimatedMonth[i], estimatedYear[i]);
 				printf("   -> Thoi diem tra sach thuc te : %d/%d/%d\n", returningDay[i], returningMonth[i], returningYear[i]);

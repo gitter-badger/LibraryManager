@@ -142,6 +142,8 @@ Output : student added
 void StudentCreatingENG() {
 	while (true)
 	{
+		system("cls");
+		fflush(stdin);
 		int choice;
 		printf("====================== STUDENT CREATING MENU ========================\n");
 		printf("                 -> 1. Create a new student                          \n");
@@ -186,6 +188,12 @@ void StudentCreatingENG() {
 		//	continue;
 	}
 	else if (choice == 2) break;
+	else
+	{
+		printf("Invalid choice !");
+		Sleep(1000);
+		continue;
+	}
 	}
 }
 /* Starting StudentEditing function

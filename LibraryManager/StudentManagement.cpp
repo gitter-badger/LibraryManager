@@ -142,6 +142,8 @@ Output : student added
 void StudentCreating() {
 	while (true)
 	{
+		system("cls");
+		fflush(stdin);
 		int choice;
 		printf("===================== MENU TAO DOC GIA ========================\n");
 		printf("                 -> 1. Tao doc gia moi                         \n");
@@ -186,6 +188,12 @@ void StudentCreating() {
 		//	continue;
 	}
 	else if (choice == 2) break;
+	else
+	{
+		printf("Lua chon khong phu hop ! Vui long thu lai !");
+		Sleep(1000);
+		continue;
+	}
 	}
 }
 /* Starting StudentEditing function

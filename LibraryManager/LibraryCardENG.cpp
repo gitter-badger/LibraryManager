@@ -165,13 +165,13 @@ void BorrowingCardListingENG() {
 	else
 	{
 		printf("  -> Total: %d borrowing cards \n\n ", borrowedcard);
-		printf("=================== BORROWING CARDS INFORMATIONS LISTING  ==================\n");
+		printf("=================== BORROWING CARDS INFORMATIONS LISTING  =====================\n");
 		printf("\n");
 		for (int i = 0; i < borrowedcard; i++)
 		{
 			printf("================ BORROWING CARD INFORMATIONS OF STUDENT %d ================\n", i + 1);
 			printf("   -> Library borrowing ID : ");
-			puts(BorrowingID[i]);
+			puts(ReturningID[i]);
 			printf("   -> Student name : ");
 			for (int j = 0; j < studentcounter; j++)
 				if (strcmp(BorrowingID[i], LibraryID[j]) == 0)
