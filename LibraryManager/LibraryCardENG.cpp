@@ -169,7 +169,7 @@ void BorrowingCardListingENG() {
 		printf("\n");
 		for (int i = 0; i < borrowedcard; i++)
 		{
-			printf("================ BORROWING CARD INFORMATIONS OF STUDENT %d ================\n", i + 1);
+			printf("================== BORROWING CARD INFORMATIONS OF STUDENT %d ==================\n", i + 1);
 			printf("   -> Library borrowing ID : ");
 			puts(ReturningID[i]);
 			printf("   -> Student name : ");
@@ -194,7 +194,7 @@ void BorrowingCardListingENG() {
 			printf("\n");
 			printf("====================================================================\n");
 		}
-		printf("===================== ATTENTION: ========================= \n");
+		printf("========================= ATTENTION: ============================= \n");
 		printf(" -> Students are only allowed to borrow with up to 7 days.\n");
 		printf(" -> If in-late, a penalty fee will begin with 5000 VND/1 day.\n");
 		printf(" -> If lost, fee to pay is 200 percents of book's price.\n");
