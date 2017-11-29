@@ -68,6 +68,7 @@ Output : waiting system and prompting user for avoiding interrupts
 	printf("\n");
 	BookDeclaration();
 	Sleep(2000);
+	printf("\n");
 	printf("\t Thu vien da nhan duoc du lieu khoi dong. Chuong trinh se duoc tiep tuc");
 	Sleep(500);
 	printf(". ");
